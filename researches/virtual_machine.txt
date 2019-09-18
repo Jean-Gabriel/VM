@@ -1,0 +1,202 @@
+Research document
+
+Goals: 
+	1. Write a stack based virtual machine in C++ that can read binary instructions and execute them.
+	2. Write a compiler in TypeScript that can compile readable instructions into binary instructions.
+	3. Expand my knowledge on virtual machines.
+	4. Expand my knowledge of C++ and TypeScript.
+	5. Use this machine to solve simple mathematical equations.
+
+Researches about the virtual machine in c++:
+
+	**Reseaches will be updated as the project progresses and my knowledge on the subject increases. 
+
+	A virtual machine is made to execute programs made of  bytecode instructions.
+
+	Upon initialization a virtual machine needs to be created and have its memory freed upon deletion:
+		
+		Representation in pseudocode:
+			interface VirtualMachine {
+				Executor exectutor;
+				Stack stack;
+				Heap heap;
+				any[] globals;
+				constructor(private state: State);
+				void free();
+				void run();
+			}
+
+	Stack:
+		Values are pushed onto the Stack and then 'popped' when used for operations. It follows the last-in-first-out principle (LIFO). The stack can be peeked to get its value on top. The default value of the stack pointer is -1 when it is empty.
+
+		The size of the stack is calculated in bytes (ex: 256)
+
+		How to use the stack for mathematical calculation:
+			5 * ( 6 + 2 ) - 12 / 4 
+				is equivalent on stack
+			5 6 2 + * 12 4 / -
+
+		Representation in pseudocode: 
+			interface Stack {
+				any[] values;
+				void push(object: any);
+				any peek();
+				any pop();
+			}
+
+	Heap:
+		When an object is added into the heap, its address is stocked on top of the stack. That's why we need to delete an an object on the heap after a stack scope ends if we want to prevent memory leaks.
+
+		Can be represented as:
+			interface Heap {
+				void delete(object: any);
+				void alloc(object: any);
+				void realloc(object: any);
+				any read(address: uint);
+			}
+
+	Operations/Instructions:
+		Of type integer. They are read and executed by the executor of the virtual machine. They often need to read oparands values to be completed. 
+
+		Oparand example:
+			3 + 6 = 9;
+			In this case, 3 and 6 are oparand of the operation +
+
+		Type representation in pseudocode: 
+			type Oparand = uint;
+			type Opcode = uint;
+
+		The visual representation of an operation in pseudocode:
+			interface Operation {
+				Opcode operation;
+				uint operandsCount;
+			}
+
+		The visual representation of an instruction in pseudocode:
+			interface Instruction {
+				Operation operation;
+				Oparand[] operands;
+			}
+	
+	State:
+		It contains informations regarding the virtual machine. Informations such as its heap, its scopes, its current running state, its current instructions, its current instruction pointer and its current scope pointer.
+
+		Types:
+			instruction pointer:
+				type InstructionPointer = uint;
+				type ScopePointer = uint;
+
+		Representation in pseudocode: 
+			interface State {
+				InstructionPointer instructionPointer; 
+				Insctruction[] program;
+				bool isRunning();
+			}
+
+	Executor:
+		The executor of the virtual machine is the one responsible for correctly executing the instrcutions of a given program. The execution functions are usually stored in an array of functions.
+
+		Representation in pseudocode: 
+			interface Executor {
+				void[] excutables;
+			}
+
+	Object creation:
+		On declarations, objects are stored globally in an class definition contianers wich contain all its methods. On instantiation, the object values are stored into the heap and the memory address is returned;
+
+		Example of class declaration from pseudocode in bytecode:
+			class A {
+				constructor(private value: uint);
+
+				print() {
+					print(this.value)
+				}
+			}
+		 
+		Results in bytecode insctruction like :
+
+		 	//Header definition
+		 	STORE_GLOBAL_OBJECT 0 -> Stores class A definition.
+		 	STORE_OBJECT_FUNCTION 0, 0, 1 -> Stores class A constructor A::A(uint) definition.
+		 	STORE_OBJECT_FUNCTION 0, 1, 0 -> Stores class A function A::print() definition.
+
+		 	DEFINE_OBJECT_FUNCTION 0, 0 -> Defines A::A(value: uint) function.
+		 	LOAD_ARG 0 -> Loads first argument on top of stack.
+		 	STORE_ATTRIBUTE 0 -> Stores value on top of the stack in this.value.
+		 	RETURN -> Return created object on top of the stack.
+
+		 	DEFINE_OBJECT_FUNCTION 1, 0 -> Defines A::print() function.
+		 	LOAD_ATTRIBUTE 0 -> Loads this.value and places it on the stack.
+		 	PRINT -> Prints the value on top of the stack.
+		 	RETURN_EMPTY -> returns 0.
+
+		 In this case, the functions are stored in a global definition and when called, they use the value stored in the heap.
+
+		 Example of object A with a value of 2 on the heap:
+		 	0, 2
+	  Type(A), Value,
+
+	  	 Given this pseudocode:
+	  	 	main() {
+	  	 		a = new A(1);
+	  	 		a.print();
+	  	 		free(a);
+	  	 	}
+
+	  	 Accessing A::print() in bytecode:
+	  	 	LOAD_GLOBAL_OBJECT 0 -> Load's 'A's definition.
+	  	 	LOAD_CONST 1 -> Pushes value 1 on to the stack.
+	  	 	CALL_OBJECT_FUNCTION 0, 1 -> Calls first function of A (object type on top of stack) -> A::A(uint).
+
+	  	 	CALL_OBJECT_FUNCTION 1, 0 -> Calling the second function of A (object type on top of stack) -> A::print().
+
+	  	 	FREE -> Free memory(heap) of object on top of stack. Then object is popped.
+
+	  	 	RETURN_EMPTY -> Return 0;
+
+	Global function creation:
+		Functions are just points in the instructions set where the interpreter jumps to when they are called. Each functions as a return point, a number of arguments, arguments and its local.
+
+		Given this pseudocode:
+
+		int sumOf(a: uint, b: uint) {
+			return a+b;
+		}
+
+		main() {
+			x = sumOf(1, 2);
+			print(x);
+		}
+
+		Equivalent in bytecode:
+
+		//Header definition
+		STORE_GLOBAL_FUNCTION 0, 12 -> Defines functions sum as the 12th instruction.
+
+		//main()
+		LOAD_CONST 1 -> Stores 1 on top of the stack.
+		LOAD_CONST 2 -> Stores 2 on top of the stack.
+		CALL_FUNCTION 0, 2 -> Calls first defined function (sumOf(uint, uint) in this case) with two attributes.
+		PRINT -> Prints value on top of stack.
+		RETURN_EMPTY -> return 0.
+
+		//sum(uint, uint)
+		LOAD_ARG 0 -> Loads first argument on top of the stack.
+		LOAD_ARG 1 -> Loads seconds argument on top of the stack.
+		ADD -> Add the two object on top of stack.
+		RETURN -> Returns value on top of stack.
+
+		Representation in pseudocode:
+		interface function {
+			uint id;
+			uint argumentCount;
+			any[] arguments;
+			any[] locals;
+			InscrutionPointer returnPoint;
+		}
+
+
+
+Inspirations:
+Python ByteCode (Mostly)
+JVM (Lightly)
