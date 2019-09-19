@@ -9,4 +9,4 @@ before_script:
 
 script:
   - cd test
-  - ls
+  - ./virtual_machine_test
