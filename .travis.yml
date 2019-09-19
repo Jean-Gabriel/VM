@@ -9,4 +9,4 @@ before_script:
 
 script:
   - cd test
-  - ctest --verbose
+  - ls
