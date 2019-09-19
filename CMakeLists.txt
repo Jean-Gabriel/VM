@@ -1,8 +1,11 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.12)
 
-project(VirtualMachine)
+project(virtual_machine)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_subdirectory(src)
+include(cmake/clang-format.cmake)
+include(cmake/googletest.cmake)
 
+add_subdirectory(src)
+add_subdirectory(test)

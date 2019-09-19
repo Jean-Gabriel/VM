@@ -1,0 +1,15 @@
+language: c++
+compiler:
+  - gcc
+
+before_script:
+  - mkdir build
+  - cd build
+  - cmake .. && make
+
+jobs:
+  include:
+    - stage: "Run tests"
+      script:
+        - cd test
+        - ./virtual_machine_run_test
