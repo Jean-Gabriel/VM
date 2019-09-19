@@ -7,9 +7,9 @@ before_script:
   - cd build
   - cmake .. && make
 
-job:
+jobs:
   include:
-    - stage: test
+    - stage: "Run tests"
       script:
         - cd test
         - ./virtual_machine_run_test
