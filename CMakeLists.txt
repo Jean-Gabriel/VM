@@ -4,5 +4,6 @@ project(VirtualMachine)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_subdirectory(src)
+include(cmake/clang-format.cmake)
 
+add_subdirectory(src)
