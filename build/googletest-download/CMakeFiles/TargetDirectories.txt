@@ -1,3 +1,0 @@
-C:/Users/Client/Documents/Projects/VirtualMachine/build/googletest-download/CMakeFiles/googletest.dir
-C:/Users/Client/Documents/Projects/VirtualMachine/build/googletest-download/CMakeFiles/ALL_BUILD.dir
-C:/Users/Client/Documents/Projects/VirtualMachine/build/googletest-download/CMakeFiles/ZERO_CHECK.dir

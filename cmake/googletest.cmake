@@ -1,4 +1,4 @@
-configure_file(googletest-download.cmake googletest-download/CMakeLists.txt)
+configure_file(cmake/googletest-download.cmake googletest-download/CMakeLists.txt)
 execute_process(COMMAND "${CMAKE_COMMAND}" -G "${CMAKE_GENERATOR}" .
         WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/googletest-download" )
 execute_process(COMMAND "${CMAKE_COMMAND}" --build .
