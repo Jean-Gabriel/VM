@@ -1,0 +1,14 @@
+# Target labels
+ googletest
+# Source files and their labels
+C:/Users/Client/Documents/Projects/VirtualMachine/build/googletest-download/CMakeFiles/googletest
+C:/Users/Client/Documents/Projects/VirtualMachine/build/googletest-download/CMakeFiles/f6d90aa5c6c1fd11c586532d8303abcb/googletest.rule
+C:/Users/Client/Documents/Projects/VirtualMachine/build/googletest-download/CMakeFiles/93d369c3f8f9c6ff5d073369b47f792f/googletest-complete.rule
+C:/Users/Client/Documents/Projects/VirtualMachine/build/googletest-download/CMakeFiles/af7c512d7ca659594d68ffb02653153f/googletest-install.rule
+C:/Users/Client/Documents/Projects/VirtualMachine/build/googletest-download/CMakeFiles/af7c512d7ca659594d68ffb02653153f/googletest-mkdir.rule
+C:/Users/Client/Documents/Projects/VirtualMachine/build/googletest-download/CMakeFiles/af7c512d7ca659594d68ffb02653153f/googletest-download.rule
+C:/Users/Client/Documents/Projects/VirtualMachine/build/googletest-download/CMakeFiles/af7c512d7ca659594d68ffb02653153f/googletest-update.rule
+C:/Users/Client/Documents/Projects/VirtualMachine/build/googletest-download/CMakeFiles/af7c512d7ca659594d68ffb02653153f/googletest-patch.rule
+C:/Users/Client/Documents/Projects/VirtualMachine/build/googletest-download/CMakeFiles/af7c512d7ca659594d68ffb02653153f/googletest-configure.rule
+C:/Users/Client/Documents/Projects/VirtualMachine/build/googletest-download/CMakeFiles/af7c512d7ca659594d68ffb02653153f/googletest-build.rule
+C:/Users/Client/Documents/Projects/VirtualMachine/build/googletest-download/CMakeFiles/af7c512d7ca659594d68ffb02653153f/googletest-test.rule
