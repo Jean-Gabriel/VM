@@ -1,3 +1,3 @@
 ## Virtual Machine
 
-An interpreter that can read and execute functions from given bytecode.
+A virtual machine that can read and execute functions from given bytecode.
