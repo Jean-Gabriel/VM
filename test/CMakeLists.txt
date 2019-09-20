@@ -7,7 +7,11 @@ project(virtual_machine_run_test)
 include_directories(../cmake-build-debug/googletest-src/googlemock/include)
 include_directories(../cmake-build-debug/googletest-src/googletest/include)
 
-set(SOURCE_FILES main.cpp)
+set(
+        SOURCE_FILES
+        main.cpp
+)
+
 add_executable(virtual_machine_run_test ${SOURCE_FILES})
 add_test(virtual_machine_run_test virtual_machine_run_test)
 
