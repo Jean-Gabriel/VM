@@ -84,13 +84,12 @@ Researches about the virtual machine in c++:
 		Types:
 			instruction pointer:
 				type InstructionPointer = uint;
-				type ScopePointer = uint;
 
 		Representation in pseudocode: 
 			interface State {
 				InstructionPointer instructionPointer; 
 				Insctruction[] program;
-				bool isRunning();
+				bool isRunning;
 			}
 
 	Executor:
