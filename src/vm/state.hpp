@@ -1,8 +1,6 @@
 #ifndef VIRTUAL_MACHINE_STATE_HPP
 #define VIRTUAL_MACHINE_STATE_HPP
 
-#include <vector>
-
 typedef short InstructionPointer;
 
 struct State {

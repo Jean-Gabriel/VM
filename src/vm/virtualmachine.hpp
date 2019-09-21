@@ -5,25 +5,23 @@
 #include "type.hpp"
 #include <string>
 #include <stack>
+#include <vector>
 
 typedef unsigned char Instruction;
 
-template<typename T>
-using Stack = std::stack<T>;
-
 class VirtualMachine {
 private:
-    const Vector<Instruction> program;
+    const std::vector<Instruction> program;
     State state;
-    Stack<Type> stack;
+    std::stack<Type*> stack;
 
-    explicit VirtualMachine(Vector<Instruction>);
+    explicit VirtualMachine(std::vector<Instruction>);
 
     void stop();
     bool instructionPointerIsOutOfBound();
     bool isRunning();
 public:
-    static VirtualMachine* initializeWith(const Vector<Instruction> &program);
+    static VirtualMachine* initializeWith(const std::vector<Instruction> &program);
     void run();
     void goToNextInstruction();
 };
