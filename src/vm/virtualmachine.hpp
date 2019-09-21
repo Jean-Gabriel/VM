@@ -2,21 +2,28 @@
 #define VIRTUAL_MACHINE_VIRTUALMACHINE_HPP
 
 #include "state.hpp"
+#include "type.hpp"
 #include <string>
+#include <stack>
 
 typedef unsigned char Instruction;
 
+template<typename T>
+using Stack = std::stack<T>;
+
 class VirtualMachine {
 private:
-    const std::vector<Instruction> program;
+    const Vector<Instruction> program;
     State state;
-    explicit VirtualMachine(std::vector<Instruction>);
-    void stopWithError(const std::string& error);
+    Stack<Type> stack;
+
+    explicit VirtualMachine(Vector<Instruction>);
+
     void stop();
     bool instructionPointerIsOutOfBound();
     bool isRunning();
 public:
-    static VirtualMachine* initializeWith(const std::vector<Instruction> &program);
+    static VirtualMachine* initializeWith(const Vector<Instruction> &program);
     void run();
     void goToNextInstruction();
 };

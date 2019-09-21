@@ -4,10 +4,8 @@
 #include <vector>
 
 typedef short InstructionPointer;
-typedef unsigned char StackPointer;
 
 struct State {
-    StackPointer  stackPointer = 0;
     InstructionPointer instructionPointer = -1;
     bool isRunning = false;
 };

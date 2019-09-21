@@ -7,4 +7,5 @@ add_executable(virtual_machine
         vm/state.hpp
         vm/virtualmachine.hpp
         vm/virtualmachine.cpp
+        vm/type.hpp
         )

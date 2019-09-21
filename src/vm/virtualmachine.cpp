@@ -8,7 +8,8 @@ VirtualMachine* VirtualMachine::initializeWith(const std::vector<Instruction> &p
 }
 
 VirtualMachine::VirtualMachine(std::vector<Instruction> program): program(std::move(program)) {
-    state.instructionPointer = 0;
+    this->state.instructionPointer = 0;
+    this->stack = {};
 }
 
 void VirtualMachine::goToNextInstruction() {
@@ -23,7 +24,7 @@ void VirtualMachine::run() {
     this->state.isRunning = true;
     while(this->isRunning()) {
         if(this->instructionPointerIsOutOfBound()) {
-            this->stopWithError("The program ran out of instructions before halting!");
+            this->stop();
         } else {
             this->goToNextInstruction();
         }
@@ -32,11 +33,6 @@ void VirtualMachine::run() {
 
 void VirtualMachine::stop() {
     this->state.isRunning = false;
-}
-
-void VirtualMachine::stopWithError(const std::string& error) {
-    std::cout << "[ERROR]: " << error << std::endl;
-    this->stop();
 }
 
 bool VirtualMachine::instructionPointerIsOutOfBound() {
