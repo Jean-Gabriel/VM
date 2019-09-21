@@ -8,4 +8,4 @@ add_executable(virtual_machine
         vm/virtual_machine.hpp
         vm/virtual_machine.cpp
         vm/type.hpp
-        )
+        vm/opcodes.hpp)
