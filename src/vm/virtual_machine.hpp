@@ -1,5 +1,5 @@
-#ifndef VIRTUAL_MACHINE_VIRTUALMACHINE_HPP
-#define VIRTUAL_MACHINE_VIRTUALMACHINE_HPP
+#ifndef VIRTUAL_MACHINE_VIRTUAL_MACHINE_HPP
+#define VIRTUAL_MACHINE_VIRTUAL_MACHINE_HPP
 
 #include "state.hpp"
 #include "type.hpp"
@@ -8,6 +8,7 @@
 #include <vector>
 
 typedef unsigned char Instruction;
+typedef unsigned char ReturnCode;
 
 class VirtualMachine {
 private:
@@ -17,7 +18,7 @@ private:
 
     explicit VirtualMachine(std::vector<Instruction>);
 
-    void stop();
+    void stop(ReturnCode);
     bool instructionPointerIsOutOfBound();
     bool isRunning();
 public:
@@ -27,4 +28,4 @@ public:
 };
 
 
-#endif //VIRTUAL_MACHINE_VIRTUALMACHINE_HPP
+#endif //VIRTUAL_MACHINE_VIRTUAL_MACHINE_HPP

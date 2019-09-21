@@ -1,4 +1,4 @@
-#include "virtualmachine.hpp"
+#include "virtual_machine.hpp"
 
 #include <utility>
 #include <iostream>
@@ -23,14 +23,15 @@ void VirtualMachine::run() {
     this->state.isRunning = true;
     while(this->isRunning()) {
         if(this->instructionPointerIsOutOfBound()) {
-            this->stop();
+            this->stop(0);
         } else {
             this->goToNextInstruction();
         }
     }
 }
 
-void VirtualMachine::stop() {
+void VirtualMachine::stop(ReturnCode code) {
+    std::cout << "The machine exited with code" << code << std::endl;
     this->state.isRunning = false;
 }
 
