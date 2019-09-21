@@ -9,7 +9,6 @@ VirtualMachine* VirtualMachine::initializeWith(const std::vector<Instruction> &p
 
 VirtualMachine::VirtualMachine(std::vector<Instruction> program): program(std::move(program)) {
     this->state.instructionPointer = 0;
-    this->stack = {};
 }
 
 void VirtualMachine::goToNextInstruction() {
