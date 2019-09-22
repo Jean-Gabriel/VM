@@ -13,7 +13,7 @@ private:
     static void halt(VirtualMachine*);
 public:
     explicit Executor();
-    void execute(VirtualMachine*, const unsigned char*);
+    void execute(VirtualMachine*, const unsigned char*) const;
 };
 
 #endif //VIRTUAL_MACHINE_EXECUTOR_HPP

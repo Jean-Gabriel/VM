@@ -7,7 +7,7 @@ VirtualMachine* VirtualMachine::initializeWith(const std::vector<Instruction> &p
         return new VirtualMachine(program);
 }
 
-VirtualMachine::VirtualMachine(std::vector<Instruction> program): program(std::move(program))/*, executor(new Executor())*/ {
+VirtualMachine::VirtualMachine(std::vector<Instruction> program): program(std::move(program)) {
     this->state.instructionPointer = 0;
 }
 

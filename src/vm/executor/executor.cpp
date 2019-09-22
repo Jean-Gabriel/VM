@@ -8,8 +8,8 @@ Executor::Executor() {
 }
 
 
-void Executor::execute(VirtualMachine *vm, const unsigned char *opcode) {
-    this->executables[*opcode](vm);
+void Executor::execute(VirtualMachine *vm, const unsigned char *operation) const {
+    this->executables[*operation](vm);
 }
 
 void Executor::halt(VirtualMachine *vm) {
