@@ -46,7 +46,9 @@ enum Opcodes {
     RETURN_EMPTY,
     RETURN,
 
-    HALT
+    HALT,
+
+    OPCODES_COUNT
 };
 
 #endif //VIRTUAL_MACHINE_OPCODES_HPP

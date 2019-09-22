@@ -2,10 +2,12 @@ project(virtual_machine)
 
 include_directories(vm)
 
-add_executable(virtual_machine
-        main.cpp
+ADD_LIBRARY(vm_lib STATIC
         vm/state.hpp
         vm/virtual_machine.hpp
         vm/virtual_machine.cpp
         vm/type.hpp
-        vm/opcodes.hpp)
+        vm/opcodes.hpp vm/executor.cpp vm/executor.hpp)
+
+add_executable(virtual_machine main.cpp)
+target_link_libraries(virtual_machine vm_lib)

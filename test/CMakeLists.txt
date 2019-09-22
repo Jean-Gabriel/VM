@@ -10,10 +10,11 @@ include_directories(../cmake-build-debug/googletest-src/googletest/include)
 set(
         SOURCE_FILES
         main.cpp
+        test_virtual_machine.cpp
 )
 
 add_executable(virtual_machine_run_test ${SOURCE_FILES})
 add_test(virtual_machine_run_test virtual_machine_run_test)
 
-target_link_libraries(virtual_machine_run_test gtest gtest_main)
+target_link_libraries(virtual_machine_run_test gtest gtest_main vm_lib)
 

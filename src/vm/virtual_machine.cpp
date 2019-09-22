@@ -7,7 +7,7 @@ VirtualMachine* VirtualMachine::initializeWith(const std::vector<Instruction> &p
         return new VirtualMachine(program);
 }
 
-VirtualMachine::VirtualMachine(std::vector<Instruction> program): program(std::move(program)) {
+VirtualMachine::VirtualMachine(std::vector<Instruction> program): program(std::move(program))/*, executor(new Executor())*/ {
     this->state.instructionPointer = 0;
 }
 
@@ -25,13 +25,14 @@ void VirtualMachine::run() {
         if(this->instructionPointerIsOutOfBound()) {
             this->stop(0);
         } else {
+            this->executor.execute(this, &this->program[this->state.instructionPointer]);
             this->goToNextInstruction();
         }
     }
 }
 
 void VirtualMachine::stop(ReturnCode code) {
-    std::cout << "The machine exited with code" << code << std::endl;
+    std::cout << "Machine exited with code " << code << std::endl;
     this->state.isRunning = false;
 }
 
