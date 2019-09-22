@@ -2,7 +2,7 @@
 #define VIRTUAL_MACHINE_EXECUTOR_HPP
 
 #include <vector>
-#include "opcodes.hpp"
+#include "../opcodes.hpp"
 
 class VirtualMachine;
 

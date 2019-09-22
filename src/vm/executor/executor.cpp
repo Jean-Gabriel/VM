@@ -1,6 +1,5 @@
 #include "executor.hpp"
-#include "virtual_machine.hpp"
-#include <iostream>
+#include "../virtual_machine.hpp"
 
 Executor::Executor() {
     this->executables.reserve(OPCODES_COUNT);
