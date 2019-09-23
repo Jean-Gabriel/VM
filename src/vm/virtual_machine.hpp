@@ -8,24 +8,25 @@
 #include <stack>
 #include <vector>
 
-typedef unsigned char Instruction;
+typedef unsigned int Bytecode;
 typedef unsigned short ReturnCode;
 
 class VirtualMachine {
 private:
-    const std::vector<Instruction> program;
+    friend class Executor;
+    const std::vector<Bytecode> program;
     State state;
     Executor executor;
     std::stack<Type*> stack;
 
-    explicit VirtualMachine(std::vector<Instruction>);
+    explicit VirtualMachine(std::vector<Bytecode>);
 
     bool instructionPointerIsOutOfBound();
 public:
-    static VirtualMachine* initializeWith(const std::vector<Instruction> &program);
+    static VirtualMachine* initializeWith(const std::vector<Bytecode> &program);
     void run();
     void stop(ReturnCode);
-    void goToNextInstruction();
+    Bytecode advanceInstruction();
     bool isRunning();
 };
 

@@ -73,7 +73,7 @@ Researches about the virtual machine in c++:
 			}
 
 		The visual representation of an instruction in pseudocode:
-			interface Instruction {
+			interface Bytecode {
 				Operation operation;
 				Oparand[] operands;
 			}

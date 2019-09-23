@@ -3,16 +3,16 @@
 #include <utility>
 #include <iostream>
 
-VirtualMachine* VirtualMachine::initializeWith(const std::vector<Instruction> &program) {
+VirtualMachine* VirtualMachine::initializeWith(const std::vector<Bytecode> &program) {
         return new VirtualMachine(program);
 }
 
-VirtualMachine::VirtualMachine(std::vector<Instruction> program): program(std::move(program)) {
+VirtualMachine::VirtualMachine(std::vector<Bytecode> program): program(std::move(program)) {
     this->state.instructionPointer = 0;
 }
 
-void VirtualMachine::goToNextInstruction() {
-    this->state.instructionPointer++;
+Bytecode VirtualMachine::advanceInstruction() {
+    return this->program[this->state.instructionPointer++];
 }
 
 bool VirtualMachine::isRunning() {
@@ -25,8 +25,7 @@ void VirtualMachine::run() {
         if(this->instructionPointerIsOutOfBound()) {
             this->stop(0);
         } else {
-            this->executor.execute(this, &this->program[this->state.instructionPointer]);
-            this->goToNextInstruction();
+            this->executor.execute(this, &this->program[this->state.instructionPointer++]);
         }
     }
 }
