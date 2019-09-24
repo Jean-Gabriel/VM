@@ -2,10 +2,11 @@
 #define VIRTUAL_MACHINE_EXECUTOR_HPP
 
 #include <vector>
+#include <cstdint>
 #include "../opcodes.hpp"
 
 class VirtualMachine;
-typedef unsigned int Bytecode;
+typedef uint8_t Bytecode;
 
 class Executor {
 private:

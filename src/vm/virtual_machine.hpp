@@ -8,8 +8,8 @@
 #include <stack>
 #include <vector>
 
-typedef unsigned int Bytecode;
-typedef unsigned short ReturnCode;
+typedef uint8_t Bytecode;
+typedef uint16_t ReturnCode;
 
 class VirtualMachine {
 private:

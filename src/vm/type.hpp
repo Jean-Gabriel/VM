@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-typedef int Pointer;
+typedef uint64_t Pointer;
 
 union Type {
     std::string string_value = "";
