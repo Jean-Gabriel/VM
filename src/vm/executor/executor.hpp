@@ -23,10 +23,9 @@ private:
     static void equalNumber(VirtualMachine*);
     static void notEqualNumber(VirtualMachine*);
     static void greaterThanNumber(VirtualMachine*);
-    static void greaterThanEqualNumber(VirtualMachine*);
+    static void greaterEqualThanNumber(VirtualMachine*);
     static void lessThanNumber(VirtualMachine*);
-    static void lessThanEqualNumber(VirtualMachine*);
-    static void peekNumber(VirtualMachine*);
+    static void lessEqualThanNumber(VirtualMachine*);
     static void printNumber(VirtualMachine*);
 public:
     explicit Executor();
