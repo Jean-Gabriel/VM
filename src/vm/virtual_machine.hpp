@@ -12,16 +12,14 @@ typedef uint8_t Bytecode;
 typedef uint16_t ReturnCode;
 
 class VirtualMachine {
-private:
+protected:
     friend class Executor;
     const std::vector<Bytecode> program;
     State state;
     Executor executor;
     std::stack<Type*> stack;
-
-    explicit VirtualMachine(std::vector<Bytecode>);
-
     bool instructionPointerIsOutOfBound();
+    explicit VirtualMachine(std::vector<Bytecode>);
 public:
     ~VirtualMachine();
     static VirtualMachine* initializeWith(const std::vector<Bytecode> &program);
