@@ -11,6 +11,13 @@ VirtualMachine::VirtualMachine(std::vector<Bytecode> program): program(std::move
     this->state.instructionPointer = 0;
 }
 
+VirtualMachine::~VirtualMachine() {
+    while(!this->stack.empty()) {
+        free(this->stack.top());
+        this->stack.pop();
+    }
+}
+
 Bytecode VirtualMachine::advanceInstruction() {
     return this->program[this->state.instructionPointer++];
 }

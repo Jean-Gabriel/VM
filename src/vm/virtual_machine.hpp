@@ -23,6 +23,7 @@ private:
 
     bool instructionPointerIsOutOfBound();
 public:
+    ~VirtualMachine();
     static VirtualMachine* initializeWith(const std::vector<Bytecode> &program);
     void run();
     void stop(ReturnCode);
