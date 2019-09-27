@@ -4,11 +4,22 @@
 Executor::Executor() {
     this->executables.reserve(OPCODES_COUNT);
 
+    this->executables[LOAD_NUMBER] = Executor::loadNumber;
+    this->executables[PRINT_NUMBER] = Executor::printNumber;
+    this->executables[ADD_NUMBER] = Executor::addNumber;
+    this->executables[MULTIPLY_NUMBER] = Executor::multiplyNumber;
+    this->executables[DIVIDE_NUMBER] = Executor::divideNumber;
+    this->executables[SUBTRACT_NUMBER] = Executor::subtractNumber;
+    this->executables[MOD_NUMBER] = Executor::modNumber;
+    this->executables[EQUAL_NUMBER] = Executor::equalNumber;
+    this->executables[GREATER_THAN_NUMBER] = Executor::greaterThanNumber;
+    this->executables[GREATER_THAN_EQUAL_NUMBER] = Executor::greaterEqualThanNumber;
+
     this->executables[HALT] = Executor::halt;
 }
 
 
-void Executor::execute(VirtualMachine *vm, const unsigned char *operation) const {
+void Executor::execute(VirtualMachine *vm, const Bytecode *operation) const {
     this->executables[*operation](vm);
 }
 
