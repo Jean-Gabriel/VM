@@ -3,8 +3,8 @@
 
 class MockVirtualMachine: public VirtualMachine {
 public:
-    std::stack<Type*> getStack() {
-        return this->stack;
+    std::stack<Type>* getStack() {
+        return &this->stack;
     };
     explicit MockVirtualMachine(const std::vector<Bytecode>& program) : VirtualMachine(program) {}
 
@@ -23,7 +23,7 @@ TEST(GivenTwoNumbersOnTheStack, ItShouldAddTheNumbers) {
 
     virtualMachine->run();
 
-    EXPECT_EQ(virtualMachine->getStack().top()->number_value, 3);
+    EXPECT_EQ(virtualMachine->getStack()->top().number_value, 3);
 
     free(virtualMachine);
 }
@@ -38,7 +38,7 @@ TEST(GivenTwoNumbersOnTheStack, ItShouldMultiplyTheNumbers) {
 
     virtualMachine->run();
 
-    EXPECT_EQ(virtualMachine->getStack().top()->number_value, 6);
+    EXPECT_EQ(virtualMachine->getStack()->top().number_value, 6);
 
     free(virtualMachine);
 }
@@ -53,7 +53,7 @@ TEST(GivenTwoNumbersOnTheStack, ItShouldSubstractTheNumbers) {
 
     virtualMachine->run();
 
-    EXPECT_EQ(virtualMachine->getStack().top()->number_value, 3);
+    EXPECT_EQ(virtualMachine->getStack()->top().number_value, 3);
 
     free(virtualMachine);
 }
@@ -68,7 +68,7 @@ TEST(GivenTwoNumbersOnTheStack, ItShouldDevideTheNumbers) {
 
     virtualMachine->run();
 
-    EXPECT_EQ(virtualMachine->getStack().top()->number_value, 2);
+    EXPECT_EQ(virtualMachine->getStack()->top().number_value, 2);
 
     free(virtualMachine);
 }
@@ -83,7 +83,7 @@ TEST(GivenTwoNumbersOnTheStack, ItShouldFindModuloOfGivenNumbers) {
 
     virtualMachine->run();
 
-    EXPECT_EQ(virtualMachine->getStack().top()->number_value, 0);
+    EXPECT_EQ(virtualMachine->getStack()->top().number_value, 0);
 
     free(virtualMachine);
 }
@@ -98,7 +98,7 @@ TEST(GivenTwoNumbersOnTheStack, TheyShouldBeEqual) {
 
     virtualMachine->run();
 
-    EXPECT_EQ(virtualMachine->getStack().top()->boolean_value, true);
+    EXPECT_EQ(virtualMachine->getStack()->top().boolean_value, true);
 
     free(virtualMachine);
 }
@@ -113,7 +113,7 @@ TEST(GivenTwoNumbersOnTheStack, TheyShouldNotBeEqual) {
 
     virtualMachine->run();
 
-    EXPECT_EQ(virtualMachine->getStack().top()->boolean_value, false);
+    EXPECT_EQ(virtualMachine->getStack()->top().boolean_value, false);
 
     free(virtualMachine);
 }
@@ -128,7 +128,7 @@ TEST(GivenTwoNumbersOnTheStack, TheSecondShouldBeGreater) {
 
     virtualMachine->run();
 
-    EXPECT_EQ(virtualMachine->getStack().top()->boolean_value, true);
+    EXPECT_EQ(virtualMachine->getStack()->top().boolean_value, true);
 
     free(virtualMachine);
 }
@@ -146,10 +146,10 @@ TEST(GivenTwoNumbersOnTheStack, TheSecondShouldBeGreaterOrEqual) {
 
     virtualMachine->run();
 
-    EXPECT_EQ(virtualMachine->getStack().top()->boolean_value, true);
-    virtualMachine->getStack().pop();
+    EXPECT_EQ(virtualMachine->getStack()->top().boolean_value, true);
+    virtualMachine->getStack()->pop();
 
-    EXPECT_EQ(virtualMachine->getStack().top()->boolean_value, true);
+    EXPECT_EQ(virtualMachine->getStack()->top().boolean_value, true);
 
     free(virtualMachine);
 }
@@ -168,10 +168,10 @@ TEST(GivenTwoNumbersOnTheStack, TheSecondShouldBeLowerOrEqual) {
 
     virtualMachine->run();
 
-    EXPECT_EQ(virtualMachine->getStack().top()->boolean_value, false);
-    virtualMachine->getStack().pop();
+    EXPECT_EQ(virtualMachine->getStack()->top().boolean_value, false);
+    virtualMachine->getStack()->pop();
 
-    EXPECT_EQ(virtualMachine->getStack().top()->boolean_value, false);
+    EXPECT_EQ(virtualMachine->getStack()->top().boolean_value, false);
 
     free(virtualMachine);
 }
@@ -186,7 +186,7 @@ TEST(GivenTwoNumbersOnTheStack, TheSecondShouldBeLower) {
 
     virtualMachine->run();
 
-    EXPECT_EQ(virtualMachine->getStack().top()->boolean_value, false);
+    EXPECT_EQ(virtualMachine->getStack()->top().boolean_value, false);
 
     free(virtualMachine);
 }

@@ -17,11 +17,10 @@ protected:
     const std::vector<Bytecode> program;
     State state;
     Executor executor;
-    std::stack<Type*> stack;
+    std::stack<Type> stack;
     bool instructionPointerIsOutOfBound();
     explicit VirtualMachine(std::vector<Bytecode>);
 public:
-    ~VirtualMachine();
     static VirtualMachine* initializeWith(const std::vector<Bytecode> &program);
     void run();
     void stop(ReturnCode);
