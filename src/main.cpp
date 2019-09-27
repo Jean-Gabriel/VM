@@ -4,7 +4,7 @@
 int main() {
 
     /* void start() {
-            print((2%20) == 0)
+            print((20%2) == 0)
         }*/
 
     const std::vector<Bytecode> program = {
