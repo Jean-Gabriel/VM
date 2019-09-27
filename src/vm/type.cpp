@@ -6,7 +6,7 @@ Type numberFrom(float value) {
     return type;
 }
 
-Type boolFrom(bool value) {
+Type booleanFrom(bool value) {
     Type type{};
     type.boolean_value = value;
     return type;

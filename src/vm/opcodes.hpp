@@ -15,7 +15,6 @@ enum Opcodes {
 
     LOAD_BOOLEAN,
     EQUAL_BOOLEAN,
-    PEEK_BOOLEAN,
     PRINT_BOOLEAN,
 
     HALT,

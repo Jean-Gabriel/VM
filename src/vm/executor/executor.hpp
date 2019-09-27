@@ -24,6 +24,10 @@ private:
     static void greaterThanNumber(VirtualMachine*);
     static void greaterEqualThanNumber(VirtualMachine*);
     static void printNumber(VirtualMachine*);
+
+    static void loadBoolean(VirtualMachine*);
+    static void equalBoolean(VirtualMachine*);
+    static void printBoolean(VirtualMachine*);
 public:
     explicit Executor();
     void execute(VirtualMachine*, const Bytecode* operation) const;
