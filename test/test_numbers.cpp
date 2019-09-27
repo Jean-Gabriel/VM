@@ -1,17 +1,5 @@
 #include <gtest/gtest.h>
-#include "../src/vm/virtual_machine.hpp"
-
-class MockVirtualMachine: public VirtualMachine {
-public:
-    std::stack<Type>* getStack() {
-        return &this->stack;
-    };
-    explicit MockVirtualMachine(const std::vector<Bytecode>& program) : VirtualMachine(program) {}
-
-    static MockVirtualMachine* initializeWith(const std::vector<Bytecode> &program) {
-        return new MockVirtualMachine(program);
-    }
-};
+#include "mock_virtual_machine.hpp"
 
 TEST(GivenTwoNumbersOnTheStack, ItShouldAddTheNumbers) {
     const std::vector<Bytecode> program = {

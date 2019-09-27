@@ -15,6 +15,10 @@ Executor::Executor() {
     this->executables[GREATER_THAN_NUMBER] = Executor::greaterThanNumber;
     this->executables[GREATER_THAN_EQUAL_NUMBER] = Executor::greaterEqualThanNumber;
 
+    this->executables[LOAD_BOOLEAN] = Executor::loadBoolean;
+    this->executables[EQUAL_BOOLEAN] = Executor::equalBoolean;
+    this->executables[PRINT_BOOLEAN] = Executor::printBoolean;
+
     this->executables[HALT] = Executor::halt;
 }
 

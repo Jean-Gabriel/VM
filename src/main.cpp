@@ -2,11 +2,20 @@
 #include <vector>
 
 int main() {
+
+    /* void start() {
+            print((2%20) == 0)
+        }*/
+
     const std::vector<Bytecode> program = {
             LOAD_NUMBER, 2,
-            LOAD_NUMBER, 21,
+            LOAD_NUMBER, 20,
             MOD_NUMBER,
-            PRINT_NUMBER,
+            LOAD_NUMBER, 0,
+            EQUAL_NUMBER,
+            LOAD_BOOLEAN, 1,
+            EQUAL_BOOLEAN,
+            PRINT_BOOLEAN,
             HALT
     };
     auto* virtualMachine = VirtualMachine::initializeWith(program);

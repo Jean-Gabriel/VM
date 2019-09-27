@@ -65,7 +65,7 @@ void Executor::equalNumber(VirtualMachine *vm){
     Type secondNumber = vm->stack.top();
     vm->stack.pop();
 
-    vm->stack.push(boolFrom(firstNumber.number_value == secondNumber.number_value));
+    vm->stack.push(booleanFrom(firstNumber.number_value == secondNumber.number_value));
 }
 
 void Executor::greaterThanNumber(VirtualMachine *vm){
@@ -75,7 +75,7 @@ void Executor::greaterThanNumber(VirtualMachine *vm){
     Type secondNumber = vm->stack.top();
     vm->stack.pop();
 
-    vm->stack.push(boolFrom(firstNumber.number_value > secondNumber.number_value));
+    vm->stack.push(booleanFrom(firstNumber.number_value > secondNumber.number_value));
 }
 
 void Executor::greaterEqualThanNumber(VirtualMachine *vm){
@@ -85,7 +85,7 @@ void Executor::greaterEqualThanNumber(VirtualMachine *vm){
     Type secondNumber = vm->stack.top();
     vm->stack.pop();
 
-    vm->stack.push(boolFrom(firstNumber.number_value >= secondNumber.number_value));
+    vm->stack.push(booleanFrom(firstNumber.number_value >= secondNumber.number_value));
 }
 
 void Executor::printNumber(VirtualMachine *vm) {

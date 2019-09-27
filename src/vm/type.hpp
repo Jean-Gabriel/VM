@@ -9,6 +9,6 @@ union Type {
 };
 
 Type numberFrom(float);
-Type boolFrom(bool);
+Type booleanFrom(bool);
 
 #endif //VIRTUAL_MACHINE_TYPE_HPP
