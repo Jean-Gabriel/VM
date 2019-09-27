@@ -86,19 +86,6 @@ void Executor::equalNumber(VirtualMachine *vm){
     free(secondNumber);
 }
 
-void Executor::notEqualNumber(VirtualMachine *vm){
-    Type* firstNumber = vm->stack.top();
-    vm->stack.pop();
-
-    Type* secondNumber = vm->stack.top();
-    vm->stack.pop();
-
-    vm->stack.push(new Type(firstNumber->number_value != secondNumber->number_value));
-
-    free(firstNumber);
-    free(secondNumber);
-}
-
 void Executor::greaterThanNumber(VirtualMachine *vm){
     Type* firstNumber = vm->stack.top();
     vm->stack.pop();
@@ -120,32 +107,6 @@ void Executor::greaterEqualThanNumber(VirtualMachine *vm){
     vm->stack.pop();
 
     vm->stack.push(new Type(firstNumber->number_value >= secondNumber->number_value));
-
-    free(firstNumber);
-    free(secondNumber);
-}
-
-void Executor::lessThanNumber(VirtualMachine *vm){
-    Type* firstNumber = vm->stack.top();
-    vm->stack.pop();
-
-    Type* secondNumber = vm->stack.top();
-    vm->stack.pop();
-
-    vm->stack.push(new Type(firstNumber->number_value < secondNumber->number_value));
-
-    free(firstNumber);
-    free(secondNumber);
-}
-
-void Executor::lessEqualThanNumber(VirtualMachine *vm){
-    Type* firstNumber = vm->stack.top();
-    vm->stack.pop();
-
-    Type* secondNumber = vm->stack.top();
-    vm->stack.pop();
-
-    vm->stack.push(new Type(firstNumber->number_value <= secondNumber->number_value));
 
     free(firstNumber);
     free(secondNumber);

@@ -21,11 +21,8 @@ private:
     static void subtractNumber(VirtualMachine*);
     static void modNumber(VirtualMachine*);
     static void equalNumber(VirtualMachine*);
-    static void notEqualNumber(VirtualMachine*);
     static void greaterThanNumber(VirtualMachine*);
     static void greaterEqualThanNumber(VirtualMachine*);
-    static void lessThanNumber(VirtualMachine*);
-    static void lessEqualThanNumber(VirtualMachine*);
     static void printNumber(VirtualMachine*);
 public:
     explicit Executor();

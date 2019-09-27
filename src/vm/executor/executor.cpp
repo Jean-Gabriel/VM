@@ -12,11 +12,8 @@ Executor::Executor() {
     this->executables[SUBTRACT_NUMBER] = Executor::subtractNumber;
     this->executables[MOD_NUMBER] = Executor::modNumber;
     this->executables[EQUAL_NUMBER] = Executor::equalNumber;
-    this->executables[NOT_EQUAL_NUMBER] = Executor::notEqualNumber;
     this->executables[GREATER_THAN_NUMBER] = Executor::greaterThanNumber;
     this->executables[GREATER_THAN_EQUAL_NUMBER] = Executor::greaterEqualThanNumber;
-    this->executables[LESS_THAN_NUMBER] = Executor::lessThanNumber;
-    this->executables[LESS_THAN_EQUAL_NUMBER] = Executor::lessEqualThanNumber;
 
     this->executables[HALT] = Executor::halt;
 }
