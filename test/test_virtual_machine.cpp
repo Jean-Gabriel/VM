@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
 #include <vector>
-#include "../src/vm/virtual_machine.hpp"
+#include "mock_virtual_machine.hpp"
 
-TEST(Given_a_virtual_machine_with_a_program, It_should_stop_after_execution) {
-    const std::vector<Bytecode> program = {HALT };
+TEST(GivenAVirtualMachineWithAProgram, ItShouldStopAfterExecution) {
+    const std::vector<Bytecode> program = { HALT };
     auto* virtualMachine = VirtualMachine::initializeWith(program);
 
     virtualMachine->run();

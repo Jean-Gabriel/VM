@@ -17,6 +17,10 @@ enum Opcodes {
     EQUAL_BOOLEAN,
     PRINT_BOOLEAN,
 
+    JUMP,
+    JUMP_TRUE,
+    JUMP_FALSE,
+
     HALT,
 
     OPCODES_COUNT

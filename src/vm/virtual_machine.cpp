@@ -38,3 +38,7 @@ void VirtualMachine::stop(ReturnCode code) {
 bool VirtualMachine::instructionPointerIsOutOfBound() {
     return this->state.instructionPointer >= program.size();
 }
+
+void VirtualMachine::setInstructionPointerTo(InstructionPointer pointer) {
+    this->state.instructionPointer = pointer;
+}
