@@ -23,6 +23,10 @@ Executor::Executor() {
     this->executables[JUMP_FALSE] = Executor::jumpIfFalse;
     this->executables[JUMP] = Executor::jump;
 
+    this->executables[STORE_GLOBAL_NUMBER] = Executor::storeGlobalNumber;
+    this->executables[STORE_GLOBAL_BOOLEAN] = Executor::storeGlobalBoolean;
+    this->executables[LOAD_GLOBAL] = Executor::loadGlobal;
+
     this->executables[HALT] = Executor::halt;
 }
 

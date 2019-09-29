@@ -21,6 +21,10 @@ enum Opcodes {
     JUMP_TRUE,
     JUMP_FALSE,
 
+    STORE_GLOBAL_NUMBER,
+    STORE_GLOBAL_BOOLEAN,
+    LOAD_GLOBAL,
+
     HALT,
 
     OPCODES_COUNT
