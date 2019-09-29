@@ -32,7 +32,11 @@ private:
     static void jumpIfTrue(VirtualMachine*);
     static void jumpIfFalse(VirtualMachine*);
     static void jump(VirtualMachine *);
-public:
+
+    static void storeGlobalNumber(VirtualMachine *);
+    static void storeGlobalBoolean(VirtualMachine *);
+    static void loadGlobal(VirtualMachine *);
+;public:
     explicit Executor();
     void execute(VirtualMachine*, const Bytecode* operation) const;
 };
