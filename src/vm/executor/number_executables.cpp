@@ -58,6 +58,16 @@ void Executor::modNumber(VirtualMachine *vm){
     vm->stack.push(numberFrom(static_cast<float>(std::fmod(firstNumber.number_value, secondNumber.number_value))));
 }
 
+void Executor::powNumber(VirtualMachine *vm){
+    Type firstNumber = vm->stack.top();
+    vm->stack.pop();
+
+    Type secondNumber = vm->stack.top();
+    vm->stack.pop();
+
+    vm->stack.push(numberFrom(powf(firstNumber.number_value, secondNumber.number_value)));
+}
+
 void Executor::equalNumber(VirtualMachine *vm){
     Type firstNumber = vm->stack.top();
     vm->stack.pop();

@@ -2,8 +2,6 @@
 #include "../virtual_machine.hpp"
 
 Executor::Executor() {
-    this->executables.reserve(OPCODES_COUNT);
-
     this->executables[LOAD_NUMBER] = Executor::loadNumber;
     this->executables[PRINT_NUMBER] = Executor::printNumber;
     this->executables[ADD_NUMBER] = Executor::addNumber;
@@ -11,6 +9,7 @@ Executor::Executor() {
     this->executables[DIVIDE_NUMBER] = Executor::divideNumber;
     this->executables[SUBTRACT_NUMBER] = Executor::subtractNumber;
     this->executables[MOD_NUMBER] = Executor::modNumber;
+    this->executables[POW_NUMBER] = Executor::powNumber;
     this->executables[EQUAL_NUMBER] = Executor::equalNumber;
     this->executables[GREATER_THAN_NUMBER] = Executor::greaterThanNumber;
     this->executables[GREATER_THAN_EQUAL_NUMBER] = Executor::greaterEqualThanNumber;
@@ -32,7 +31,7 @@ Executor::Executor() {
 
 
 void Executor::execute(VirtualMachine *vm, const Bytecode *operation) const {
-    this->executables[*operation](vm);
+    this->executables.at(*operation)(vm);
 }
 
 void Executor::jump(VirtualMachine* vm) {
