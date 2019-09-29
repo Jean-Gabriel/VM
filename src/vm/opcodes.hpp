@@ -7,6 +7,7 @@ enum Opcodes {
     MULTIPLY_NUMBER,
     DIVIDE_NUMBER,
     SUBTRACT_NUMBER,
+    POW_NUMBER,
     MOD_NUMBER,
     EQUAL_NUMBER,
     GREATER_THAN_NUMBER,
@@ -26,8 +27,6 @@ enum Opcodes {
     LOAD_GLOBAL,
 
     HALT,
-
-    OPCODES_COUNT
 };
 
 #endif //VIRTUAL_MACHINE_OPCODES_HPP

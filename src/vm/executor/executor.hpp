@@ -1,7 +1,7 @@
 #ifndef VIRTUAL_MACHINE_EXECUTOR_HPP
 #define VIRTUAL_MACHINE_EXECUTOR_HPP
 
-#include <vector>
+#include <map>
 #include <cstdint>
 #include "../opcodes.hpp"
 
@@ -10,7 +10,7 @@ typedef uint8_t Bytecode;
 
 class Executor {
 private:
-    std::vector<void (*)(VirtualMachine*)> executables;
+    std::map<Bytecode,void (*)(VirtualMachine*)> executables;
 
     static void halt(VirtualMachine*);
 
@@ -20,6 +20,7 @@ private:
     static void divideNumber(VirtualMachine*);
     static void subtractNumber(VirtualMachine*);
     static void modNumber(VirtualMachine*);
+    static void powNumber(VirtualMachine *);
     static void equalNumber(VirtualMachine*);
     static void greaterThanNumber(VirtualMachine*);
     static void greaterEqualThanNumber(VirtualMachine*);

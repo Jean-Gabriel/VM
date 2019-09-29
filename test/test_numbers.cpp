@@ -76,6 +76,21 @@ TEST(GivenTwoNumbersOnTheStack, ItShouldFindModuloOfGivenNumbers) {
     free(virtualMachine);
 }
 
+TEST(GivenTwoNumbersOnTheStack, ItShouldCalculatePowerOfGivenNumbers) {
+    const std::vector<Bytecode> program = {
+            LOAD_NUMBER, 2,
+            LOAD_NUMBER, 3,
+            POW_NUMBER,
+    };
+    auto* virtualMachine = MockVirtualMachine::initializeWith(program);
+
+    virtualMachine->run();
+
+    EXPECT_EQ(virtualMachine->getStack()->top().number_value, 9);
+
+    free(virtualMachine);
+}
+
 TEST(GivenTwoNumbersOnTheStack, TheyShouldBeEqual) {
     const std::vector<Bytecode> program = {
             LOAD_NUMBER, 2,
