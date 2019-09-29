@@ -28,6 +28,10 @@ private:
     static void loadBoolean(VirtualMachine*);
     static void equalBoolean(VirtualMachine*);
     static void printBoolean(VirtualMachine*);
+
+    static void jumpIfTrue(VirtualMachine*);
+    static void jumpIfFalse(VirtualMachine*);
+    static void jump(VirtualMachine *);
 public:
     explicit Executor();
     void execute(VirtualMachine*, const Bytecode* operation) const;

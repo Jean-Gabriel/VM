@@ -19,12 +19,22 @@ Executor::Executor() {
     this->executables[EQUAL_BOOLEAN] = Executor::equalBoolean;
     this->executables[PRINT_BOOLEAN] = Executor::printBoolean;
 
+    this->executables[JUMP_TRUE] = Executor::jumpIfTrue;
+    this->executables[JUMP_FALSE] = Executor::jumpIfFalse;
+    this->executables[JUMP] = Executor::jump;
+
     this->executables[HALT] = Executor::halt;
 }
 
 
 void Executor::execute(VirtualMachine *vm, const Bytecode *operation) const {
     this->executables[*operation](vm);
+}
+
+void Executor::jump(VirtualMachine* vm) {
+    InstructionPointer jumpInstructionPointer = vm->advanceInstruction();
+
+    vm->setInstructionPointerTo(jumpInstructionPointer);
 }
 
 void Executor::halt(VirtualMachine *vm) {

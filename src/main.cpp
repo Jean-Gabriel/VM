@@ -4,18 +4,33 @@
 int main() {
 
     /* void start() {
-            print((20%2) == 0)
+            if(20%2 == 0) {
+                print(0)
+            } else {
+                print(20%2);
+            }
         }*/
 
     const std::vector<Bytecode> program = {
+            //if(21%2==0)
             LOAD_NUMBER, 2,
-            LOAD_NUMBER, 20,
+            LOAD_NUMBER, 21,
             MOD_NUMBER,
             LOAD_NUMBER, 0,
             EQUAL_NUMBER,
-            LOAD_BOOLEAN, 1,
-            EQUAL_BOOLEAN,
-            PRINT_BOOLEAN,
+            JUMP_TRUE, 11, 16, // if true jump to 11 else jump to 16
+
+            // { print(0) }
+            LOAD_NUMBER, 0,
+            PRINT_NUMBER,
+            JUMP, 22, // jump over else block
+
+            // { print(21%2) }
+            LOAD_NUMBER, 2,
+            LOAD_NUMBER, 21,
+            MOD_NUMBER,
+            PRINT_NUMBER,
+
             HALT
     };
     auto* virtualMachine = VirtualMachine::initializeWith(program);
