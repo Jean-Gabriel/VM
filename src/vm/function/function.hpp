@@ -2,7 +2,7 @@
 #define VIRTUAL_MACHINE_FUNCTION_HPP
 
 #include <map>
-#include <type.hpp>
+#include "../type.hpp"
 
 class VirtualMachine;
 typedef uint8_t DeclarableID;

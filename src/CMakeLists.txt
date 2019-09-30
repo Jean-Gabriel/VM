@@ -16,7 +16,11 @@ ADD_LIBRARY(vm_lib STATIC
         vm/executor/conditional_executables.cpp
         vm/executor/globals_executor.cpp
         vm/function/function.hpp
-        vm/function/function_declaration.hpp vm/executor/function_executables.cpp vm/executor/locals_executables.cpp)
+        vm/function/function_declaration.hpp
+        vm/executor/function_executables.cpp
+        vm/executor/locals_executables.cpp
+        vm/function/function_declaration.cpp
+        vm/function/function.cpp)
 
-add_executable(virtual_machine main.cpp vm/function/function_declaration.cpp vm/function/function.cpp)
+add_executable(virtual_machine main.cpp)
 target_link_libraries(virtual_machine vm_lib)
