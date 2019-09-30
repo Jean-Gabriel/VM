@@ -34,8 +34,7 @@ private:
     static void jumpIfFalse(VirtualMachine*);
     static void jump(VirtualMachine *);
 
-    static void storeGlobalNumber(VirtualMachine *);
-    static void storeGlobalBoolean(VirtualMachine *);
+    static void storeGlobal(VirtualMachine *);
     static void loadGlobal(VirtualMachine *);
 
     static void storeLocal(VirtualMachine *);
