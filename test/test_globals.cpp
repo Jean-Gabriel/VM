@@ -10,13 +10,11 @@ TEST(GivenANumber, ItShouldBeStoredAsAGlobal) {
 
             HALT,
     };
-    auto* virtualMachine = MockVirtualMachine::initializeWith(program);
+    auto virtualMachine = MockVirtualMachine::initializeWith(program);
 
-    virtualMachine->run();
+    virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine->getStack()->top().number_value,20);
-
-    free(virtualMachine);
+    EXPECT_EQ(virtualMachine.getStack()->top().number_value,20);
 }
 
 TEST(GivenADeclaredGlobalFunction, ItShouldBeCalledWhenInstructedTo) {
@@ -33,11 +31,9 @@ TEST(GivenADeclaredGlobalFunction, ItShouldBeCalledWhenInstructedTo) {
 
             LOAD_NUMBER, 1,
     };
-    auto* virtualMachine = MockVirtualMachine::initializeWith(program);
+    auto virtualMachine = MockVirtualMachine::initializeWith(program);
 
-    virtualMachine->run();
+    virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine->getStack()->top().number_value,7);
-
-    free(virtualMachine);
+    EXPECT_EQ(virtualMachine.getStack()->top().number_value,7);
 }

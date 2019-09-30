@@ -31,7 +31,7 @@ protected:
     bool instructionPointerIsOutOfBound();
     explicit VirtualMachine(std::vector<Bytecode>);
 public:
-    static VirtualMachine* initializeWith(const std::vector<Bytecode> &program);
+    static VirtualMachine initializeWith(const std::vector<Bytecode> &program);
     void run();
     void stop(ReturnCode);
     void setInstructionPointerTo(InstructionPointer);

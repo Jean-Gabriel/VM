@@ -15,13 +15,11 @@ TEST(GivenATrueCondition, ItShouldJumpToFirstInstruction) {
 
         HALT
     };
-    auto* virtualMachine = MockVirtualMachine::initializeWith(program);
+    auto virtualMachine = MockVirtualMachine::initializeWith(program);
 
-    virtualMachine->run();
+    virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine->getStack()->top().number_value, 1);
-
-    free(virtualMachine);
+    EXPECT_EQ(virtualMachine.getStack()->top().number_value, 1);
 }
 
 TEST(GivenAFalseCondition, ItShouldJumpToSecondInstruction) {
@@ -38,11 +36,9 @@ TEST(GivenAFalseCondition, ItShouldJumpToSecondInstruction) {
 
             HALT
     };
-    auto* virtualMachine = MockVirtualMachine::initializeWith(program);
+    auto virtualMachine = MockVirtualMachine::initializeWith(program);
 
-    virtualMachine->run();
+    virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine->getStack()->top().number_value, 2);
-
-    free(virtualMachine);
+    EXPECT_EQ(virtualMachine.getStack()->top().number_value, 2);
 }

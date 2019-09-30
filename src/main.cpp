@@ -45,11 +45,9 @@ int main() {
             RETURN,
 
     };
-    auto* virtualMachine = VirtualMachine::initializeWith(program);
+    auto virtualMachine = VirtualMachine::initializeWith(program);
 
-    virtualMachine->run();
-
-    free(virtualMachine);
+    virtualMachine.run();
 
     return 0;
 }
