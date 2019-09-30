@@ -26,6 +26,13 @@ Executor::Executor() {
     this->executables[STORE_GLOBAL_BOOLEAN] = Executor::storeGlobalBoolean;
     this->executables[LOAD_GLOBAL] = Executor::loadGlobal;
 
+    this->executables[STORE_LOCAL] = Executor::storeLocal;
+    this->executables[LOAD_LOCAL] = Executor::loadLocal;
+
+    this->executables[DECLARE_GLOBAL_FUNCTION] = Executor::declareGlobalFunction;
+    this->executables[CALL_GLOBAL_FUNCTION] = Executor::callGlobalFunction;
+    this->executables[RETURN] = Executor::doReturn;
+
     this->executables[HALT] = Executor::halt;
 }
 

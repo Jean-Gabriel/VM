@@ -4,6 +4,8 @@
 #include "state.hpp"
 #include "type.hpp"
 #include "executor/executor.hpp"
+#include "function/function.hpp"
+#include "function/function_declaration.hpp"
 #include <string>
 #include <stack>
 #include <vector>
@@ -11,7 +13,7 @@
 
 typedef uint8_t Bytecode;
 typedef uint16_t ReturnCode;
-typedef uint8_t VariableID;
+typedef uint8_t DeclarableID;
 
 class VirtualMachine {
 protected:
@@ -20,8 +22,11 @@ protected:
     const std::vector<Bytecode> program;
     State state;
     Executor executor;
+
+    std::unordered_map<DeclarableID, FunctionDeclaration> declaredFunctions;
+    std::unordered_map<DeclarableID, Type> globals;
     std::stack<Type> stack;
-    std::unordered_map<VariableID, Type> globals;
+    std::stack<Function> callStack;
 
     bool instructionPointerIsOutOfBound();
     explicit VirtualMachine(std::vector<Bytecode>);

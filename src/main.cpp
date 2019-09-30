@@ -2,11 +2,13 @@
 #include <vector>
 
 /*
- * number num = 20
- * boolean isPair = num%2 == 0
+ * boolean isPair(num) {
+ *      return num%2==0
+ * }
  *
  * void start() {
- *      if(isPair) {
+ *      number givenNumber = 20;
+ *      if(isPair(givenNumber)) {
  *          print(0)
  *      } else {
  *          print(1)
@@ -16,29 +18,32 @@
 
 int main() {
     const std::vector<Bytecode> program = {
-            LOAD_NUMBER, 20,
-            STORE_GLOBAL_NUMBER, 0, // number num = 20
+            DECLARE_GLOBAL_FUNCTION, 0, 10, 0, //void start(), at, args count
+            DECLARE_GLOBAL_FUNCTION, 1, 30, 1, //boolean isPair(givenNumber), at, args count
 
-            LOAD_NUMBER, 2,
-            LOAD_GLOBAL, 0,
-            MOD_NUMBER,
-            LOAD_NUMBER, 0,
-            EQUAL_NUMBER,
-            STORE_GLOBAL_BOOLEAN, 1, // boolean isPair = num%2 == 0
+            CALL_GLOBAL_FUNCTION, 0, // calls start()
 
-            LOAD_BOOLEAN, 1,
-            LOAD_GLOBAL, 1,
-            EQUAL_BOOLEAN,
-            JUMP_TRUE, 22, 27, //if(isPair), else
-
+            //void start()
+            LOAD_NUMBER, 21,
+            STORE_LOCAL, 0, // number givenNumber = 21
+            LOAD_LOCAL, 0,
+            CALL_GLOBAL_FUNCTION, 1, // isPair(givenNumber)
+            JUMP_TRUE, 21, 26, // if(true), else
             LOAD_NUMBER, 0,
             PRINT_NUMBER,
-            JUMP, 30, // print(0), skip block
-
-            LOAD_NUMBER, 1,
-            PRINT_NUMBER, // print(1), continue
-
+            JUMP, 29,
+            LOAD_NUMBER,1,
+            PRINT_NUMBER,
             HALT,
+
+            //boolean isPair(givenNumber)
+            LOAD_NUMBER, 2,
+            LOAD_LOCAL, 0,
+            MOD_NUMBER, //givenNumber%2
+            LOAD_NUMBER, 0,
+            EQUAL_NUMBER, // == 0
+            RETURN,
+
     };
     auto* virtualMachine = VirtualMachine::initializeWith(program);
 
