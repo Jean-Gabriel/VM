@@ -37,6 +37,13 @@ private:
     static void storeGlobalNumber(VirtualMachine *);
     static void storeGlobalBoolean(VirtualMachine *);
     static void loadGlobal(VirtualMachine *);
+
+    static void storeLocal(VirtualMachine *);
+    static void loadLocal(VirtualMachine *);
+
+    static void declareGlobalFunction(VirtualMachine *);
+    static void callGlobalFunction(VirtualMachine *);
+    static void doReturn(VirtualMachine *);
 ;public:
     explicit Executor();
     void execute(VirtualMachine*, const Bytecode* operation) const;
