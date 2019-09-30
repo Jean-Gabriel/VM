@@ -29,8 +29,7 @@ enum Opcodes {
     STORE_LOCAL,
     LOAD_LOCAL,
 
-    STORE_GLOBAL_NUMBER,
-    STORE_GLOBAL_BOOLEAN,
+    STORE_GLOBAL,
     LOAD_GLOBAL,
 
     HALT,

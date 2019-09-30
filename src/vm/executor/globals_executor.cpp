@@ -2,20 +2,12 @@
 #include "executor.hpp"
 #include "virtual_machine.hpp"
 
-void Executor::storeGlobalNumber(VirtualMachine *vm) {
+void Executor::storeGlobal(VirtualMachine *vm) {
     DeclarableID id = vm->advanceInstruction();
-    Type numberToStore = vm->stack.top();
+    Type globalToStore = vm->stack.top();
     vm->stack.pop();
 
-    vm->globals.insert(std::pair<DeclarableID, Type>(id, numberToStore));
-}
-
-void Executor::storeGlobalBoolean(VirtualMachine *vm){
-    DeclarableID id = vm->advanceInstruction();
-    Type booleanToStore = vm->stack.top();
-    vm->stack.pop();
-
-    vm->globals.insert(std::pair<DeclarableID, Type>(id, booleanToStore));
+    vm->globals.insert(std::pair<DeclarableID, Type>(id, globalToStore));
 }
 
 void Executor::loadGlobal(VirtualMachine *vm) {
