@@ -3,8 +3,8 @@
 #include <utility>
 #include <iostream>
 
-VirtualMachine* VirtualMachine::initializeWith(const std::vector<Bytecode> &program) {
-        return new VirtualMachine(program);
+VirtualMachine VirtualMachine::initializeWith(const std::vector<Bytecode> &program) {
+        return VirtualMachine(program);
 }
 
 VirtualMachine::VirtualMachine(std::vector<Bytecode> program): program(std::move(program)) {

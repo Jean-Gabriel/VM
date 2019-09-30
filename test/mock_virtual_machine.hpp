@@ -9,8 +9,8 @@ public:
     };
     explicit MockVirtualMachine(const std::vector<Bytecode>& program) : VirtualMachine(program) {}
 
-    static MockVirtualMachine* initializeWith(const std::vector<Bytecode> &program) {
-        return new MockVirtualMachine(program);
+    static MockVirtualMachine initializeWith(const std::vector<Bytecode> &program) {
+        return MockVirtualMachine(program);
     }
 };
 

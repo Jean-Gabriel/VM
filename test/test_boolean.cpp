@@ -7,13 +7,11 @@ TEST(GivenTwoBoolean, TheyShouldBeEqual) {
             LOAD_BOOLEAN, 1,
             EQUAL_BOOLEAN,
     };
-    auto* virtualMachine = MockVirtualMachine::initializeWith(program);
+    auto virtualMachine = MockVirtualMachine::initializeWith(program);
 
-    virtualMachine->run();
+    virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine->getStack()->top().boolean_value,true);
-
-    free(virtualMachine);
+    EXPECT_EQ(virtualMachine.getStack()->top().boolean_value,true);
 }
 
 TEST(GivenTwoBoolean, TheyShouldNotBeEqual) {
@@ -22,11 +20,9 @@ TEST(GivenTwoBoolean, TheyShouldNotBeEqual) {
             LOAD_BOOLEAN, 1,
             EQUAL_BOOLEAN,
     };
-    auto* virtualMachine = MockVirtualMachine::initializeWith(program);
+    auto virtualMachine = MockVirtualMachine::initializeWith(program);
 
-    virtualMachine->run();
+    virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine->getStack()->top().boolean_value,false);
-
-    free(virtualMachine);
+    EXPECT_EQ(virtualMachine.getStack()->top().boolean_value,false);
 }

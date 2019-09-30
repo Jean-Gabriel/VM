@@ -4,9 +4,9 @@
 
 TEST(GivenAVirtualMachineWithAProgram, ItShouldStopAfterExecution) {
     const std::vector<Bytecode> program = { HALT };
-    auto* virtualMachine = VirtualMachine::initializeWith(program);
+    auto virtualMachine = VirtualMachine::initializeWith(program);
 
-    virtualMachine->run();
+    virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine->isRunning(), false);
+    EXPECT_EQ(virtualMachine.isRunning(), false);
 }

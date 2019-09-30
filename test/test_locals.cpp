@@ -13,11 +13,9 @@ TEST(GivenAStoredLocal, ItShouldLoadTheLocalOnToTheStack) {
             LOAD_LOCAL, 0,
             HALT,
     };
-    auto* virtualMachine = MockVirtualMachine::initializeWith(program);
+    auto virtualMachine = MockVirtualMachine::initializeWith(program);
 
-    virtualMachine->run();
+    virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine->getStack()->top().number_value,1);
-
-    free(virtualMachine);
+    EXPECT_EQ(virtualMachine.getStack()->top().number_value,1);
 }
