@@ -4,16 +4,20 @@
 #include <vector>
 #include "chunk.hpp"
 
+struct String;
 typedef uint16_t Pointer;
 
 class Memory {
 protected:
     friend class Executor;
+
     std::vector<Chunk> block;
     void resize(uint16_t);
 
     explicit Memory(uint16_t);
 public:
+    std::string stringFrom(String memoryInformation);
+
     static Memory createWithSize(uint16_t);
     Pointer allocate(std::vector<uint8_t>);
     void freeAt(Pointer,uint16_t);

@@ -1,8 +1,6 @@
 #include <gtest/gtest.h>
 #include "mocks/mock_memory.hpp"
 
-class Chunk;
-
 TEST(GivenAFullMemory, ItShouldResizeAndAllocate) {
     auto memory = MockMemory::createWithSize(1);
     memory.allocate({1});

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.hpp>
 #include "memory.hpp"
 
 Memory Memory::createWithSize(uint16_t bytes) {
@@ -54,4 +55,13 @@ void Memory::dump() {
             std::cout << chunk.read() << std::endl;
         }
     }
+}
+
+std::string Memory::stringFrom(String memoryInformation) {
+    std::string assembledString;
+    for(int i = memoryInformation.startingPoint; i < memoryInformation.startingPoint + memoryInformation.length; i++) {
+        assembledString.push_back(this->block[i].read());
+    }
+
+    return assembledString;
 }

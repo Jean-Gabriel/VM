@@ -7,7 +7,7 @@ VirtualMachine VirtualMachine::initializeWith(const std::vector<Bytecode> &progr
         return VirtualMachine(program);
 }
 
-VirtualMachine::VirtualMachine(std::vector<Bytecode> program): program(std::move(program)) {
+VirtualMachine::VirtualMachine(std::vector<Bytecode> program): program(std::move(program)), memory(Memory::createWithSize(1000)) {
     this->state.instructionPointer = 0;
 }
 

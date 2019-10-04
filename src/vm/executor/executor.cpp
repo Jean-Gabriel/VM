@@ -18,6 +18,12 @@ Executor::Executor() {
     this->executables[EQUAL_BOOLEAN] = Executor::equalBoolean;
     this->executables[PRINT_BOOLEAN] = Executor::printBoolean;
 
+    this->executables[LOAD_STRING] = Executor::loadString;
+    this->executables[APPEND_STRING] = Executor::appendString;
+    this->executables[SUBSTRING_AT] = Executor::substringAt;
+    this->executables[SUBSTRING_WITH_LENGTH] = Executor::substringWithLength;
+    this->executables[PRINT_STRING] = Executor::printString;
+
     this->executables[JUMP_TRUE] = Executor::jumpIfTrue;
     this->executables[JUMP_FALSE] = Executor::jumpIfFalse;
     this->executables[JUMP] = Executor::jump;

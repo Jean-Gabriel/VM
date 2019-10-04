@@ -6,6 +6,7 @@
 #include "executor/executor.hpp"
 #include "function/function.hpp"
 #include "function/function_declaration.hpp"
+#include "memory/memory.hpp"
 #include <string>
 #include <stack>
 #include <vector>
@@ -22,6 +23,7 @@ protected:
     const std::vector<Bytecode> program;
     State state;
     Executor executor;
+    Memory memory;
 
     std::unordered_map<DeclarableID, FunctionDeclaration> declaredFunctions;
     std::unordered_map<DeclarableID, Type> globals;

@@ -20,7 +20,7 @@ ADD_LIBRARY(vm_lib STATIC
         vm/executor/function_executables.cpp
         vm/executor/locals_executables.cpp
         vm/function/function_declaration.cpp
-        vm/function/function.cpp vm/memory/memory.cpp vm/memory/memory.hpp vm/memory/chunk.hpp)
+        vm/function/function.cpp vm/memory/memory.cpp vm/memory/memory.hpp vm/memory/chunk.hpp vm/string.hpp vm/executor/string_executables.cpp)
 
 add_executable(virtual_machine main.cpp)
 target_link_libraries(virtual_machine vm_lib)

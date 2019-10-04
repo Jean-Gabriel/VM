@@ -11,7 +11,7 @@ set(
         SOURCE_FILES
         main.cpp
         test_virtual_machine.cpp
-        test_numbers.cpp test_boolean.cpp mocks/mock_virtual_machine.hpp test_conditional.cpp test_globals.cpp test_value_parser.cpp test_locals.cpp test_memory.cpp mocks/mock_memory.hpp test_chunk.cpp)
+        test_numbers.cpp test_boolean.cpp mocks/mock_virtual_machine.hpp test_conditional.cpp test_globals.cpp test_value_parser.cpp test_locals.cpp test_memory.cpp mocks/mock_memory.hpp test_chunk.cpp test_string.cpp)
 
 add_executable(virtual_machine_run_test ${SOURCE_FILES})
 add_test(virtual_machine_run_test virtual_machine_run_test)

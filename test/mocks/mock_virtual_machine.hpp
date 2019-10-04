@@ -7,6 +7,11 @@ public:
     std::stack<Type>* getStack() {
         return &this->stack;
     };
+
+    Memory getMemory() const {
+        return this->memory;
+    }
+
     explicit MockVirtualMachine(const std::vector<Bytecode>& program) : VirtualMachine(program) {}
 
     static MockVirtualMachine initializeWith(const std::vector<Bytecode> &program) {

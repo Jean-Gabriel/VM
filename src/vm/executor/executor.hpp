@@ -32,20 +32,26 @@ private:
     static void equalBoolean(VirtualMachine*);
     static void printBoolean(VirtualMachine*);
 
+    static void loadString(VirtualMachine*);
+    static void appendString(VirtualMachine*);
+    static void substringAt(VirtualMachine*);
+    static void substringWithLength(VirtualMachine*);
+    static void printString(VirtualMachine*);
+
     static void jumpIfTrue(VirtualMachine*);
     static void jumpIfFalse(VirtualMachine*);
-    static void jump(VirtualMachine *);
+    static void jump(VirtualMachine*);
 
-    static void storeGlobal(VirtualMachine *);
-    static void loadGlobal(VirtualMachine *);
+    static void storeGlobal(VirtualMachine*);
+    static void loadGlobal(VirtualMachine*);
 
-    static void storeLocal(VirtualMachine *);
-    static void loadLocal(VirtualMachine *);
+    static void storeLocal(VirtualMachine*);
+    static void loadLocal(VirtualMachine*);
 
-    static void declareGlobalFunction(VirtualMachine *);
-    static void callGlobalFunction(VirtualMachine *);
+    static void declareGlobalFunction(VirtualMachine*);
+    static void callGlobalFunction(VirtualMachine*);
     static void loadArgumentsFor(FunctionDeclaration, VirtualMachine*);
-    static void doReturn(VirtualMachine *);
+    static void doReturn(VirtualMachine*);
 public:
     explicit Executor();
     void execute(VirtualMachine*, const Bytecode* operation) const;
