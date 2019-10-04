@@ -19,7 +19,7 @@ TEST(GivenATrueCondition, ItShouldJumpToFirstInstruction) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().number_value, 1);
+    EXPECT_EQ(virtualMachine.getStack()->top().numberValue, 1);
 }
 
 TEST(GivenAFalseCondition, ItShouldJumpToSecondInstruction) {
@@ -40,5 +40,5 @@ TEST(GivenAFalseCondition, ItShouldJumpToSecondInstruction) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().number_value, 2);
+    EXPECT_EQ(virtualMachine.getStack()->top().numberValue, 2);
 }

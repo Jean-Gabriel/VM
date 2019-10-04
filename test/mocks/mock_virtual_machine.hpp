@@ -4,7 +4,7 @@
 
 class MockVirtualMachine: public VirtualMachine {
 public:
-    std::stack<Type>* getStack() {
+    std::stack<Value>* getStack() {
         return &this->stack;
     };
 

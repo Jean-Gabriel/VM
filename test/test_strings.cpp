@@ -8,8 +8,8 @@ TEST(GivenAStringToLoadOnTheStack, ItShouldStoreItsHeapInformationOnTopOfStack) 
     auto virtualMachine = MockVirtualMachine::initializeWith(program);
     virtualMachine.run();
 
-    Type memoryInformation = virtualMachine.getStack()->top();
-    std::string loadedString = virtualMachine.getMemory().stringFrom(memoryInformation.string);
+    Value value = virtualMachine.getStack()->top();
+    std::string loadedString = virtualMachine.getMemory().stringFrom(value.stringInformation);
 
     EXPECT_EQ(loadedString, "Hello");
 }
@@ -23,8 +23,8 @@ TEST(GivenTwoStringOnTheStack, ItShouldAppendTheStrings) {
     auto virtualMachine = MockVirtualMachine::initializeWith(program);
     virtualMachine.run();
 
-    Type memoryInformation = virtualMachine.getStack()->top();
-    std::string loadedString = virtualMachine.getMemory().stringFrom(memoryInformation.string);
+    Value value = virtualMachine.getStack()->top();
+    std::string loadedString = virtualMachine.getMemory().stringFrom(value.stringInformation);
 
     EXPECT_EQ(loadedString, "Hello world");
 }
@@ -37,8 +37,8 @@ TEST(GivenAStringOnTheStack, ItShouldCreateSubstringOfGivenStringAndIndex) {
     auto virtualMachine = MockVirtualMachine::initializeWith(program);
     virtualMachine.run();
 
-    Type memoryInformation = virtualMachine.getStack()->top();
-    std::string loadedString = virtualMachine.getMemory().stringFrom(memoryInformation.string);
+    Value value = virtualMachine.getStack()->top();
+    std::string loadedString = virtualMachine.getMemory().stringFrom(value.stringInformation);
 
     EXPECT_EQ(loadedString, "world");
 }
@@ -51,8 +51,8 @@ TEST(GivenAStringOnTheStack, ItShouldCreateSubstringWithGivenIndexAndLength) {
     auto virtualMachine = MockVirtualMachine::initializeWith(program);
     virtualMachine.run();
 
-    Type memoryInformation = virtualMachine.getStack()->top();
-    std::string loadedString = virtualMachine.getMemory().stringFrom(memoryInformation.string);
+    Value value = virtualMachine.getStack()->top();
+    std::string loadedString = virtualMachine.getMemory().stringFrom(value.stringInformation);
 
     EXPECT_EQ(loadedString, "Hello");
 }

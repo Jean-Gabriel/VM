@@ -4,12 +4,12 @@
 void Executor::jumpIfTrue(VirtualMachine *vm) {
     InstructionPointer jumpInstructionPointer = vm->advanceInstruction();
     InstructionPointer elseJumpInstructionPointer = vm->advanceInstruction();
-    Type topOfStack = vm->stack.top();
+    Value topOfStack = vm->stack.top();
     vm->stack.pop();
 
-    if(topOfStack.boolean_value) {
+    if(topOfStack.booleanValue) {
         vm->setInstructionPointerTo(jumpInstructionPointer);
-    } else if(!topOfStack.boolean_value && elseJumpInstructionPointer != -1) {
+    } else if(!topOfStack.booleanValue && elseJumpInstructionPointer != -1) {
         vm->setInstructionPointerTo(elseJumpInstructionPointer);
     }
 }
@@ -17,12 +17,12 @@ void Executor::jumpIfTrue(VirtualMachine *vm) {
 void Executor::jumpIfFalse(VirtualMachine *vm) {
     InstructionPointer jumpInstructionPointer = vm->advanceInstruction();
     InstructionPointer elseJumpInstructionPointer = vm->advanceInstruction();
-    Type topOfStack = vm->stack.top();
+    Value topOfStack = vm->stack.top();
     vm->stack.pop();
 
-    if(!topOfStack.boolean_value) {
+    if(!topOfStack.booleanValue) {
         vm->setInstructionPointerTo(jumpInstructionPointer);
-    } else if(topOfStack.boolean_value && elseJumpInstructionPointer != -1) {
+    } else if(topOfStack.booleanValue && elseJumpInstructionPointer != -1) {
         vm->setInstructionPointerTo(elseJumpInstructionPointer);
     }
 }

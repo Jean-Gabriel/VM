@@ -11,7 +11,7 @@ TEST(GivenTwoNumbersOnTheStack, ItShouldAddTheNumbers) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().number_value, 3);
+    EXPECT_EQ(virtualMachine.getStack()->top().numberValue, 3);
 
 
 }
@@ -26,7 +26,7 @@ TEST(GivenTwoNumbersOnTheStack, ItShouldMultiplyTheNumbers) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().number_value, 6);
+    EXPECT_EQ(virtualMachine.getStack()->top().numberValue, 6);
 
 
 }
@@ -41,7 +41,7 @@ TEST(GivenTwoNumbersOnTheStack, ItShouldSubstractTheNumbers) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().number_value, 3);
+    EXPECT_EQ(virtualMachine.getStack()->top().numberValue, 3);
 
 
 }
@@ -56,7 +56,7 @@ TEST(GivenTwoNumbersOnTheStack, ItShouldDevideTheNumbers) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().number_value, 2);
+    EXPECT_EQ(virtualMachine.getStack()->top().numberValue, 2);
 
 
 }
@@ -71,7 +71,7 @@ TEST(GivenTwoNumbersOnTheStack, ItShouldFindModuloOfGivenNumbers) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().number_value, 0);
+    EXPECT_EQ(virtualMachine.getStack()->top().numberValue, 0);
 
 
 }
@@ -86,7 +86,7 @@ TEST(GivenTwoNumbersOnTheStack, ItShouldCalculatePowerOfGivenNumbers) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().number_value, 9);
+    EXPECT_EQ(virtualMachine.getStack()->top().numberValue, 9);
 
 
 }
@@ -101,7 +101,7 @@ TEST(GivenTwoNumbersOnTheStack, TheyShouldBeEqual) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().boolean_value, true);
+    EXPECT_EQ(virtualMachine.getStack()->top().booleanValue, true);
 
 
 }
@@ -116,7 +116,7 @@ TEST(GivenTwoNumbersOnTheStack, TheyShouldNotBeEqual) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().boolean_value, false);
+    EXPECT_EQ(virtualMachine.getStack()->top().booleanValue, false);
 
 
 }
@@ -131,7 +131,7 @@ TEST(GivenTwoNumbersOnTheStack, TheSecondShouldBeGreater) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().boolean_value, true);
+    EXPECT_EQ(virtualMachine.getStack()->top().booleanValue, true);
 
 
 }
@@ -149,10 +149,10 @@ TEST(GivenTwoNumbersOnTheStack, TheSecondShouldBeGreaterOrEqual) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().boolean_value, true);
+    EXPECT_EQ(virtualMachine.getStack()->top().booleanValue, true);
     virtualMachine.getStack()->pop();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().boolean_value, true);
+    EXPECT_EQ(virtualMachine.getStack()->top().booleanValue, true);
 
 
 }
@@ -171,10 +171,10 @@ TEST(GivenTwoNumbersOnTheStack, TheSecondShouldBeLowerOrEqual) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().boolean_value, false);
+    EXPECT_EQ(virtualMachine.getStack()->top().booleanValue, false);
     virtualMachine.getStack()->pop();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().boolean_value, false);
+    EXPECT_EQ(virtualMachine.getStack()->top().booleanValue, false);
 
 
 }
@@ -189,5 +189,5 @@ TEST(GivenTwoNumbersOnTheStack, TheSecondShouldBeLower) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().boolean_value, false);
+    EXPECT_EQ(virtualMachine.getStack()->top().booleanValue, false);
 }

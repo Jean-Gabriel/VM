@@ -17,5 +17,5 @@ TEST(GivenAStoredLocal, ItShouldLoadTheLocalOnToTheStack) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().number_value,1);
+    EXPECT_EQ(virtualMachine.getStack()->top().numberValue, 1);
 }
