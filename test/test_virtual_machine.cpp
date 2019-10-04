@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <vector>
-#include "mock_virtual_machine.hpp"
+#include "mocks/mock_virtual_machine.hpp"
 
 TEST(GivenAVirtualMachineWithAProgram, ItShouldStopAfterExecution) {
     const std::vector<Bytecode> program = { HALT };
