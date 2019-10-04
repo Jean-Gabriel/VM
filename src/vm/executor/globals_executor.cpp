@@ -30,14 +30,16 @@ void Executor::declareGlobalFunction(VirtualMachine *vm) {
 void Executor::callGlobalFunction(VirtualMachine *vm) {
     DeclarableID demandedFunctionId = vm->advanceInstruction();
     FunctionDeclaration demandedFunction =  vm->declaredFunctions.at(demandedFunctionId);
-
     InstructionPointer returnPoint = vm->state.instructionPointer;
 
     Function calledFunction = buildFunctionWith(returnPoint);
 
     vm->callStack.push(calledFunction);
     vm->setInstructionPointerTo(demandedFunction.startingPoint);
+    Executor::loadArgumentsFor(demandedFunction, vm);
+}
 
+void Executor::loadArgumentsFor(FunctionDeclaration demandedFunction, VirtualMachine *vm) {
     for(DeclarableID i = 0;i<demandedFunction.argumentCount;i++) {
         Type type =  vm->stack.top();
         vm->stack.pop();

@@ -3,8 +3,10 @@
 
 #include <map>
 #include <cstdint>
+
 #include "../opcodes.hpp"
 
+struct FunctionDeclaration;
 class VirtualMachine;
 typedef uint8_t Bytecode;
 
@@ -42,8 +44,9 @@ private:
 
     static void declareGlobalFunction(VirtualMachine *);
     static void callGlobalFunction(VirtualMachine *);
+    static void loadArgumentsFor(FunctionDeclaration, VirtualMachine*);
     static void doReturn(VirtualMachine *);
-;public:
+public:
     explicit Executor();
     void execute(VirtualMachine*, const Bytecode* operation) const;
 };

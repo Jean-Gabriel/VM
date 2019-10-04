@@ -1,6 +1,6 @@
 #ifndef VIRTUAL_MACHINE_MOCK_VIRTUAL_MACHINE_HPP
 #define VIRTUAL_MACHINE_MOCK_VIRTUAL_MACHINE_HPP
-#include "../src/vm/virtual_machine.hpp"
+#include "../../src/vm/virtual_machine.hpp"
 
 class MockVirtualMachine: public VirtualMachine {
 public:

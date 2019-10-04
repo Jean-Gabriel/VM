@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "mock_virtual_machine.hpp"
+#include "mocks/mock_virtual_machine.hpp"
 
 TEST(GivenAStoredLocal, ItShouldLoadTheLocalOnToTheStack) {
     const std::vector<Bytecode> program = {
