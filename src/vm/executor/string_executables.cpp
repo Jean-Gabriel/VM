@@ -12,61 +12,61 @@ void Executor::loadString(VirtualMachine *vm) {
     }
 
     Pointer startingPoint = vm->memory.allocate(stringValues);
-    vm->stack.push(stringWith(startingPoint, stringValues.size()));
+    vm->stack.push(stringInformationWith(startingPoint, stringValues.size()));
 }
 
 void Executor::appendString(VirtualMachine *vm) {
-    Type memoryInformationOfFirst = vm->stack.top();
+    Value firstValue = vm->stack.top();
     vm->stack.pop();
-    Type memoryInformationOfSecond = vm->stack.top();
+    Value secondValue = vm->stack.top();
     vm->stack.pop();
 
-    std::string stringToAppend = vm->memory.stringFrom(memoryInformationOfFirst.string);
-    std::string destinationString = vm->memory.stringFrom(memoryInformationOfSecond.string);
+    std::string stringToAppend = vm->memory.stringFrom(firstValue.stringInformation);
+    std::string destinationString = vm->memory.stringFrom(secondValue.stringInformation);
     std::string result = destinationString.append(stringToAppend);
 
-    vm->memory.freeAt(memoryInformationOfFirst.string.startingPoint, memoryInformationOfFirst.string.length);
-    vm->memory.freeAt(memoryInformationOfSecond.string.startingPoint, memoryInformationOfSecond.string.length);
+    vm->memory.freeAt(firstValue.stringInformation.startingPoint, firstValue.stringInformation.length);
+    vm->memory.freeAt(secondValue.stringInformation.startingPoint, secondValue.stringInformation.length);
 
     Pointer resultStartingPoint = vm->memory.allocate(std::vector<uint8_t>(result.begin(),result.end()));
-    vm->stack.push(stringWith(resultStartingPoint, result.size()));
+    vm->stack.push(stringInformationWith(resultStartingPoint, result.size()));
 }
 
 void Executor::substringAt(VirtualMachine *vm) {
     Bytecode indexToSubstring = vm->advanceInstruction();
-    Type memoryInformation = vm->stack.top();
+    Value value = vm->stack.top();
     vm->stack.pop();
 
-    std::string stringToPortion = vm->memory.stringFrom(memoryInformation.string);
+    std::string stringToPortion = vm->memory.stringFrom(value.stringInformation);
     std::string substring = stringToPortion.substr(indexToSubstring);
 
-    vm->memory.freeAt(memoryInformation.string.startingPoint, memoryInformation.string.length);
+    vm->memory.freeAt(value.stringInformation.startingPoint, value.stringInformation.length);
 
     Pointer substringStartingPointer = vm->memory.allocate(std::vector<uint8_t>(substring.begin(), substring.end()));
-    vm->stack.push(stringWith(substringStartingPointer, substring.size()));
+    vm->stack.push(stringInformationWith(substringStartingPointer, substring.size()));
 }
 
 void Executor::substringWithLength(VirtualMachine *vm) {
     Bytecode indexToSubstring = vm->advanceInstruction();
     Bytecode sizeOfSubstring = vm->advanceInstruction();
-    Type memoryInformation = vm->stack.top();
+    Value value = vm->stack.top();
     vm->stack.pop();
 
-    std::string stringToPortion = vm->memory.stringFrom(memoryInformation.string);
+    std::string stringToPortion = vm->memory.stringFrom(value.stringInformation);
     std::string substring = stringToPortion.substr(indexToSubstring, sizeOfSubstring);
 
-    vm->memory.freeAt(memoryInformation.string.startingPoint, memoryInformation.string.length);
+    vm->memory.freeAt(value.stringInformation.startingPoint, value.stringInformation.length);
 
     Pointer substringStartingPointer = vm->memory.allocate(std::vector<uint8_t>(substring.begin(), substring.end()));
-    vm->stack.push(stringWith(substringStartingPointer, substring.size()));
+    vm->stack.push(stringInformationWith(substringStartingPointer, substring.size()));
 }
 
 void Executor::printString(VirtualMachine *vm) {
-    Type memoryInformation = vm->stack.top();
+    Value value = vm->stack.top();
     vm->stack.top();
 
-    std::string assembledStringToPrint = vm->memory.stringFrom(memoryInformation.string);
+    std::string assembledStringToPrint = vm->memory.stringFrom(value.stringInformation);
 
     std::cout << assembledStringToPrint << std::endl;
-    vm->memory.freeAt(memoryInformation.string.startingPoint, memoryInformation.string.length);
+    vm->memory.freeAt(value.stringInformation.startingPoint, value.stringInformation.length);
 }

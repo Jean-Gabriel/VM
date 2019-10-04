@@ -62,7 +62,7 @@ Researches about the virtual machine in c++:
 			3 + 6 = 9;
 			In this case, 3 and 6 are oparand of the operation +
 
-		Type representation in pseudocode: 
+		Value representation in pseudocode:
 			type Oparand = uint;
 			type Opcode = uint;
 
@@ -133,7 +133,7 @@ Researches about the virtual machine in c++:
 
 		 Example of object A with a value of 2 on the heap:
 		 	0, 2
-	  Type(A), Value,
+	  Value(A), Value,
 
 	  	 Given this pseudocode:
 	  	 	main() {

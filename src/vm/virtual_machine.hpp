@@ -2,7 +2,7 @@
 #define VIRTUAL_MACHINE_VIRTUAL_MACHINE_HPP
 
 #include "state.hpp"
-#include "type.hpp"
+#include "value.hpp"
 #include "executor/executor.hpp"
 #include "function/function.hpp"
 #include "function/function_declaration.hpp"
@@ -26,8 +26,8 @@ protected:
     Memory memory;
 
     std::unordered_map<DeclarableID, FunctionDeclaration> declaredFunctions;
-    std::unordered_map<DeclarableID, Type> globals;
-    std::stack<Type> stack;
+    std::unordered_map<DeclarableID, Value> globals;
+    std::stack<Value> stack;
     std::stack<Function> callStack;
 
     bool instructionPointerIsOutOfBound();

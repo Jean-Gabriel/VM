@@ -14,7 +14,7 @@ TEST(GivenANumber, ItShouldBeStoredAsAGlobal) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().number_value,20);
+    EXPECT_EQ(virtualMachine.getStack()->top().numberValue, 20);
 }
 
 TEST(GivenADeclaredGlobalFunction, ItShouldBeCalledWhenInstructedTo) {
@@ -35,5 +35,5 @@ TEST(GivenADeclaredGlobalFunction, ItShouldBeCalledWhenInstructedTo) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().number_value,7);
+    EXPECT_EQ(virtualMachine.getStack()->top().numberValue, 7);
 }

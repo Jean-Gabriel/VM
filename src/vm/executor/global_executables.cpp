@@ -1,18 +1,18 @@
-#include <type.hpp>
+#include <value.hpp>
 #include "executor.hpp"
 #include "virtual_machine.hpp"
 
 void Executor::storeGlobal(VirtualMachine *vm) {
     DeclarableID id = vm->advanceInstruction();
-    Type globalToStore = vm->stack.top();
+    Value globalToStore = vm->stack.top();
     vm->stack.pop();
 
-    vm->globals.insert(std::pair<DeclarableID, Type>(id, globalToStore));
+    vm->globals.insert(std::pair<DeclarableID, Value>(id, globalToStore));
 }
 
 void Executor::loadGlobal(VirtualMachine *vm) {
     DeclarableID idToLoad = vm->advanceInstruction();
-    Type requestedGlobal = vm->globals.at(idToLoad);
+    Value requestedGlobal = vm->globals.at(idToLoad);
 
     vm->stack.push(requestedGlobal);
 }
@@ -41,9 +41,9 @@ void Executor::callGlobalFunction(VirtualMachine *vm) {
 
 void Executor::loadArgumentsFor(FunctionDeclaration demandedFunction, VirtualMachine *vm) {
     for(DeclarableID i = 0;i<demandedFunction.argumentCount;i++) {
-        Type type =  vm->stack.top();
+        Value value =  vm->stack.top();
         vm->stack.pop();
 
-        vm->callStack.top().declarables.insert(std::pair<DeclarableID, Type>(i, type));
+        vm->callStack.top().declarables.insert(std::pair<DeclarableID, Value>(i, value));
     }
 }

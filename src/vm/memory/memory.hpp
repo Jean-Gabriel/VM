@@ -4,7 +4,7 @@
 #include <vector>
 #include "chunk.hpp"
 
-struct String;
+struct StringMemoryInformation;
 typedef uint16_t Pointer;
 
 class Memory {
@@ -16,11 +16,12 @@ protected:
 
     explicit Memory(uint16_t);
 public:
-    std::string stringFrom(String memoryInformation);
+    std::string stringFrom(StringMemoryInformation memoryInformation);
 
     static Memory createWithSize(uint16_t);
     Pointer allocate(std::vector<uint8_t>);
     void freeAt(Pointer,uint16_t);
+
     void dump();
 };
 

@@ -4,7 +4,6 @@
 #include <stdint-gcc.h>
 
 typedef uint16_t InstructionPointer;
-typedef uint8_t FunctionPointer;
 
 struct State {
     InstructionPointer instructionPointer = -1;

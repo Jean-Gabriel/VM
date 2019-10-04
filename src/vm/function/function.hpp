@@ -2,13 +2,13 @@
 #define VIRTUAL_MACHINE_FUNCTION_HPP
 
 #include <map>
-#include "../type.hpp"
+#include "../value.hpp"
 
 class VirtualMachine;
 typedef uint8_t DeclarableID;
 
 struct Function {
-    std::map<DeclarableID, Type> declarables;
+    std::map<DeclarableID, Value> declarables;
     InstructionPointer returnPoint;
 };
 

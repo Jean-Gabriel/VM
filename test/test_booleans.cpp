@@ -11,7 +11,7 @@ TEST(GivenTwoBoolean, TheyShouldBeEqual) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().boolean_value,true);
+    EXPECT_EQ(virtualMachine.getStack()->top().booleanValue, true);
 }
 
 TEST(GivenTwoBoolean, TheyShouldNotBeEqual) {
@@ -24,5 +24,5 @@ TEST(GivenTwoBoolean, TheyShouldNotBeEqual) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().boolean_value,false);
+    EXPECT_EQ(virtualMachine.getStack()->top().booleanValue, false);
 }
