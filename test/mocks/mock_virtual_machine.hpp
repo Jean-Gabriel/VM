@@ -12,9 +12,9 @@ public:
         return this->memory;
     }
 
-    explicit MockVirtualMachine(const std::vector<Bytecode>& program) : VirtualMachine(program) {}
+    explicit MockVirtualMachine(const std::vector<uint8_t>& program) : VirtualMachine(program) {}
 
-    static MockVirtualMachine initializeWith(const std::vector<Bytecode> &program) {
+    static MockVirtualMachine initializeWith(const std::vector<uint8_t> &program) {
         return MockVirtualMachine(program);
     }
 };

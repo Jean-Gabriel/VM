@@ -12,32 +12,28 @@
 #include <vector>
 #include <unordered_map>
 
-typedef uint8_t Bytecode;
-typedef uint16_t ReturnCode;
-typedef uint8_t DeclarableID;
-
 class VirtualMachine {
 protected:
     friend class Executor;
 
-    const std::vector<Bytecode> program;
+    const std::vector<uint8_t> program;
     State state;
     Executor executor;
     Memory memory;
 
-    std::unordered_map<DeclarableID, FunctionDeclaration> declaredFunctions;
-    std::unordered_map<DeclarableID, Value> globals;
+    std::unordered_map<uint8_t, FunctionDeclaration> declaredFunctions;
+    std::unordered_map<uint8_t, Value> globals;
     std::stack<Value> stack;
     std::stack<Function> callStack;
 
     bool instructionPointerIsOutOfBound();
-    explicit VirtualMachine(std::vector<Bytecode>);
+    explicit VirtualMachine(std::vector<uint8_t> program);
 public:
-    static VirtualMachine initializeWith(const std::vector<Bytecode> &program);
+    static VirtualMachine initializeWith(const std::vector<uint8_t> &program);
     void run();
-    void stop(ReturnCode);
-    void setInstructionPointerTo(InstructionPointer);
-    Bytecode advanceInstruction();
+    void stop(uint8_t returnCode);
+    void setInstructionPointerTo(int pointer);
+    uint8_t advanceInstruction();
     bool isRunning();
 };
 

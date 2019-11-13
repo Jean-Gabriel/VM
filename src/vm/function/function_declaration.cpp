@@ -1,6 +1,6 @@
 #include "function_declaration.hpp"
 
-FunctionDeclaration buildFunctionDeclarationWith(InstructionPointer startingPoint, uint8_t argumentCount) {
+FunctionDeclaration buildFunctionDeclarationWith(int startingPoint, uint8_t argumentCount) {
         FunctionDeclaration declaration{};
 
         declaration.startingPoint = startingPoint;

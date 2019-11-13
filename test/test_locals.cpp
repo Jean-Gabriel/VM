@@ -2,10 +2,10 @@
 #include "mocks/mock_virtual_machine.hpp"
 
 TEST(GivenAStoredLocal, ItShouldLoadTheLocalOnToTheStack) {
-    const std::vector<Bytecode> program = {
-            DECLARE_GLOBAL_FUNCTION, 0, 6, 0,
+    const std::vector<uint8_t> program = {
+            DECLARE_FUNCTION, 0, 6, 0,
 
-            CALL_GLOBAL_FUNCTION, 0,
+            CALL_FUNCTION, 0,
 
             LOAD_NUMBER, 1,
             STORE_LOCAL, 0,
@@ -17,5 +17,5 @@ TEST(GivenAStoredLocal, ItShouldLoadTheLocalOnToTheStack) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().numberValue, 1);
+    EXPECT_EQ(virtualMachine.getStack()->top().content.numberValue, 1);
 }

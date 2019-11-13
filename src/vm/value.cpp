@@ -1,22 +1,51 @@
 #include "value.hpp"
 
-Value numberFrom(float numberValue) {
-    Value value{};
-    value.numberValue = numberValue;
-    return value;
+Value numberValueFrom(float number) {
+    return {.type = NUMBER, { .numberValue = number } };
 }
 
-Value booleanFrom(bool booleanValue) {
-    Value type{};
-    type.booleanValue = booleanValue;
-    return type;
+Value booleanValueFrom(bool boolean) {
+    return {.type = BOOLEAN, { .booleanValue = boolean } };
 }
 
-Value stringInformationWith(Pointer startingPoint, uint8_t length) {
-    Value value{};
+Value objectValueFrom(uint16_t statingPoint, uint8_t length) {
+    Value objectValue {.type = OBJECT };
 
-    value.stringInformation.length = length;
-    value.stringInformation.startingPoint = startingPoint;
+    objectValue.content.objectValue.length = length;
+    objectValue.content.objectValue.startingPoint = statingPoint;
 
-    return value;
+    return objectValue;
+}
+
+std::vector<uint8_t> bytesFrom(Value value) {
+    switch(value.type) {
+        case BOOLEAN: {
+            return { value.content.booleanValue };
+        }
+        case NUMBER: {
+            NumberValue numberValue = { .number = value.content.numberValue };
+            return { numberValue.bytes[0], numberValue.bytes[1], numberValue.bytes[2], numberValue.bytes[3] };
+        }
+        default: {
+            break;
+        }
+    }
+
+    return {};
+}
+
+Value valueFrom(std::vector<uint8_t> bytes, ValueType type) {
+    switch(type) {
+        case BOOLEAN: {
+            return booleanValueFrom(bytes.front());
+        }
+        case NUMBER: {
+            NumberValue numberValue { .bytes = { bytes[0], bytes[1], bytes[2], bytes[3] } };
+            return numberValueFrom(numberValue.number);
+        }
+        default:
+            break;
+    }
+
+    return { .type = NIL };
 }

@@ -2,16 +2,34 @@
 #define VIRTUAL_MACHINE_VALUE_HPP
 
 #include <iostream>
-#include "memory/string_memory_information.hpp"
+#include "memory/object.hpp"
 
-union Value {
-    bool booleanValue;
-    float numberValue;
-    StringMemoryInformation stringInformation;
+enum ValueType {
+    NUMBER,
+    BOOLEAN,
+    OBJECT,
+    NIL,
 };
 
-Value numberFrom(float);
-Value booleanFrom(bool);
-Value stringInformationWith(Pointer, uint8_t);
+union NumberValue {
+    uint8_t bytes[4];
+    float number;
+};
+
+struct Value {
+    uint8_t type;
+    union Content {
+        bool booleanValue;
+        float numberValue;
+        Object objectValue;
+    } content;
+};
+
+Value numberValueFrom(float number);
+Value booleanValueFrom(bool boolean);
+Value objectValueFrom(uint16_t statingPoint, uint8_t length);
+
+std::vector<uint8_t> bytesFrom(Value value);
+Value valueFrom(std::vector<uint8_t> bytes, ValueType type);
 
 #endif //VIRTUAL_MACHINE_VALUE_HPP

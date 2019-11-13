@@ -5,13 +5,12 @@
 #include "../value.hpp"
 
 class VirtualMachine;
-typedef uint8_t DeclarableID;
 
 struct Function {
-    std::map<DeclarableID, Value> declarables;
-    InstructionPointer returnPoint;
+    std::map<uint8_t, Value> declarables;
+    int returnPoint;
 };
 
-Function buildFunctionWith(InstructionPointer);
+Function buildFunctionWith(int returnPoint);
 
 #endif //VIRTUAL_MACHINE_FUNCTION_HPP

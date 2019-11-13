@@ -13,9 +13,9 @@ private:
     ChunkFlag flag = FREE;
     uint8_t value;
 public:
-    void write(uint8_t value) {
+    void write(uint8_t newValue) {
         this->flag = ALLOCATED;
-        this->value = value;
+        this->value = newValue;
     }
 
     uint8_t read() {

@@ -1,7 +1,6 @@
-#include <state.hpp>
 #include "function.hpp"
 
-Function buildFunctionWith(InstructionPointer returnPoint) {
+Function buildFunctionWith(int returnPoint) {
     Function function{};
 
     function.returnPoint = returnPoint;

@@ -25,7 +25,7 @@ TEST(GivenAnEmptyMemory, ItShouldWriteToMemory) {
 TEST(GivenAMemoryWithAllocatedChunks, ItShouldFreeFromPointerAndSize) {
     auto memory = MockMemory::createWithSize(2);
     const std::vector<uint8_t > values = { 1, 2};
-    Pointer startingPoint = memory.allocate(values);
+    uint16_t startingPoint = memory.allocate(values);
 
     memory.freeAt(startingPoint, values.size());
 

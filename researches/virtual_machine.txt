@@ -11,7 +11,7 @@ Researches about the virtual machine in c++:
 
 	**Reseaches will be updated as the project progresses and my knowledge on the subject increases. 
 
-	A virtual machine is made to execute programs made of  bytecode instructions.
+	A virtual machine is made to execute programs made of  uint8_t instructions.
 
 	Upon initialization a virtual machine needs to be created and have its memory freed upon deletion:
 		
@@ -73,7 +73,7 @@ Researches about the virtual machine in c++:
 			}
 
 		The visual representation of an instruction in pseudocode:
-			interface Bytecode {
+			interface uint8_t {
 				Operation operation;
 				Oparand[] operands;
 			}
@@ -103,7 +103,7 @@ Researches about the virtual machine in c++:
 	Object creation:
 		On declarations, objects are stored globally in an class definition contianers wich contain all its methods. On instantiation, the object values are stored into the heap and the memory address is returned;
 
-		Example of class declaration from pseudocode in bytecode:
+		Example of class declaration from pseudocode in uint8_t:
 			class A {
 				constructor(private value: uint);
 
@@ -112,7 +112,7 @@ Researches about the virtual machine in c++:
 				}
 			}
 		 
-		Results in bytecode insctruction like :
+		Results in uint8_t insctruction like :
 
 		 	//Header definition
 		 	STORE_GLOBAL_OBJECT 0 -> Stores class A definition.
@@ -142,7 +142,7 @@ Researches about the virtual machine in c++:
 	  	 		free(a);
 	  	 	}
 
-	  	 Accessing A::print() in bytecode:
+	  	 Accessing A::print() in uint8_t:
 	  	 	LOAD_GLOBAL_OBJECT 0 -> Load's 'A's definition.
 	  	 	LOAD_CONST 1 -> Pushes value 1 on to the stack.
 	  	 	CALL_OBJECT_FUNCTION 0, 1 -> Calls first function of A (object type on top of stack) -> A::A(uint).
@@ -167,7 +167,7 @@ Researches about the virtual machine in c++:
 			print(x);
 		}
 
-		Equivalent in bytecode:
+		Equivalent in uint8_t:
 
 		//Header definition
 		STORE_GLOBAL_FUNCTION 0, 12 -> Defines functions sum as the 12th instruction.
@@ -197,5 +197,5 @@ Researches about the virtual machine in c++:
 
 
 Inspirations:
-Python ByteCode (Mostly)
+Python uint8_t (Mostly)
 JVM (Lightly)

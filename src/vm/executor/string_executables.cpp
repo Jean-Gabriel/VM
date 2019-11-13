@@ -4,69 +4,69 @@
 
 void Executor::loadString(VirtualMachine *vm) {
     std::vector<uint8_t> stringValues;
-    Bytecode byte = vm->advanceInstruction();
+    uint8_t byte = vm->advanceInstruction();
 
     while (byte != 0) {
         stringValues.push_back(byte);
         byte = vm->advanceInstruction();
     }
 
-    Pointer startingPoint = vm->memory.allocate(stringValues);
-    vm->stack.push(stringInformationWith(startingPoint, stringValues.size()));
+    uint16_t startingPoint = vm->memory.allocate(stringValues);
+    vm->stack.push(objectValueFrom(startingPoint, stringValues.size()));
 }
 
 void Executor::appendString(VirtualMachine *vm) {
-    Value firstValue = vm->stack.top();
+    Value::Content firstValue = vm->stack.top().content;
     vm->stack.pop();
-    Value secondValue = vm->stack.top();
+    Value::Content secondValue = vm->stack.top().content;
     vm->stack.pop();
 
-    std::string stringToAppend = vm->memory.stringFrom(firstValue.stringInformation);
-    std::string destinationString = vm->memory.stringFrom(secondValue.stringInformation);
+    std::string stringToAppend = vm->memory.stringFrom(firstValue.objectValue);
+    std::string destinationString = vm->memory.stringFrom(secondValue.objectValue);
     std::string result = destinationString.append(stringToAppend);
 
-    vm->memory.freeAt(firstValue.stringInformation.startingPoint, firstValue.stringInformation.length);
-    vm->memory.freeAt(secondValue.stringInformation.startingPoint, secondValue.stringInformation.length);
+    vm->memory.freeAt(firstValue.objectValue.startingPoint, firstValue.objectValue.length);
+    vm->memory.freeAt(secondValue.objectValue.startingPoint, secondValue.objectValue.length);
 
-    Pointer resultStartingPoint = vm->memory.allocate(std::vector<uint8_t>(result.begin(),result.end()));
-    vm->stack.push(stringInformationWith(resultStartingPoint, result.size()));
+    uint16_t resultStartingPoint = vm->memory.allocate(std::vector<uint8_t>(result.begin(),result.end()));
+    vm->stack.push(objectValueFrom(resultStartingPoint, result.size()));
 }
 
 void Executor::substringAt(VirtualMachine *vm) {
-    Bytecode indexToSubstring = vm->advanceInstruction();
-    Value value = vm->stack.top();
+    uint8_t indexToSubstring = vm->advanceInstruction();
+    Value::Content value = vm->stack.top().content;
     vm->stack.pop();
 
-    std::string stringToPortion = vm->memory.stringFrom(value.stringInformation);
+    std::string stringToPortion = vm->memory.stringFrom(value.objectValue);
     std::string substring = stringToPortion.substr(indexToSubstring);
 
-    vm->memory.freeAt(value.stringInformation.startingPoint, value.stringInformation.length);
+    vm->memory.freeAt(value.objectValue.startingPoint, value.objectValue.length);
 
-    Pointer substringStartingPointer = vm->memory.allocate(std::vector<uint8_t>(substring.begin(), substring.end()));
-    vm->stack.push(stringInformationWith(substringStartingPointer, substring.size()));
+    int substringStartingPointer = vm->memory.allocate(std::vector<uint8_t>(substring.begin(), substring.end()));
+    vm->stack.push(objectValueFrom(substringStartingPointer, substring.size()));
 }
 
 void Executor::substringWithLength(VirtualMachine *vm) {
-    Bytecode indexToSubstring = vm->advanceInstruction();
-    Bytecode sizeOfSubstring = vm->advanceInstruction();
-    Value value = vm->stack.top();
+    uint8_t indexToSubstring = vm->advanceInstruction();
+    uint8_t sizeOfSubstring = vm->advanceInstruction();
+    Value::Content value = vm->stack.top().content;
     vm->stack.pop();
 
-    std::string stringToPortion = vm->memory.stringFrom(value.stringInformation);
+    std::string stringToPortion = vm->memory.stringFrom(value.objectValue);
     std::string substring = stringToPortion.substr(indexToSubstring, sizeOfSubstring);
 
-    vm->memory.freeAt(value.stringInformation.startingPoint, value.stringInformation.length);
+    vm->memory.freeAt(value.objectValue.startingPoint, value.objectValue.length);
 
-    Pointer substringStartingPointer = vm->memory.allocate(std::vector<uint8_t>(substring.begin(), substring.end()));
-    vm->stack.push(stringInformationWith(substringStartingPointer, substring.size()));
+    uint16_t substringStartingPointer = vm->memory.allocate(std::vector<uint8_t>(substring.begin(), substring.end()));
+    vm->stack.push(objectValueFrom(substringStartingPointer, substring.size()));
 }
 
 void Executor::printString(VirtualMachine *vm) {
-    Value value = vm->stack.top();
+    Value::Content value = vm->stack.top().content;
     vm->stack.top();
 
-    std::string assembledStringToPrint = vm->memory.stringFrom(value.stringInformation);
+    std::string assembledStringToPrint = vm->memory.stringFrom(value.objectValue);
 
     std::cout << assembledStringToPrint << std::endl;
-    vm->memory.freeAt(value.stringInformation.startingPoint, value.stringInformation.length);
+    vm->memory.freeAt(value.objectValue.startingPoint, value.objectValue.length);
 }
