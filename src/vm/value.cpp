@@ -1,11 +1,19 @@
 #include "value.hpp"
 
 Value numberValueFrom(float number) {
-    return {.type = NUMBER, { .numberValue = number } };
+    Value numberValue = {.type = NUMBER };
+
+    numberValue.content.numberValue = number;
+
+    return numberValue;
 }
 
 Value booleanValueFrom(bool boolean) {
-    return {.type = BOOLEAN, { .booleanValue = boolean } };
+    Value booleanValue = { .type = BOOLEAN };
+
+    booleanValue.content.booleanValue = boolean;
+
+    return booleanValue;
 }
 
 Value objectValueFrom(uint16_t statingPoint, uint8_t length) {
