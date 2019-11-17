@@ -11,14 +11,14 @@ enum ChunkFlag {
 class Chunk {
 private:
     ChunkFlag flag = FREE;
-    uint8_t value;
+    uint16_t value;
 public:
-    void write(uint8_t value) {
+    void write(uint16_t newValue) {
         this->flag = ALLOCATED;
-        this->value = value;
+        this->value = newValue;
     }
 
-    uint8_t read() {
+    uint16_t read() {
         return this->value;
     }
 

@@ -2,7 +2,7 @@
 #include "mocks/mock_virtual_machine.hpp"
 
 TEST(GivenATrueCondition, ItShouldJumpToFirstInstruction) {
-    const std::vector<Bytecode> program = {
+    const std::vector<uint8_t> program = {
         LOAD_NUMBER, 3,
         LOAD_NUMBER, 3,
         EQUAL_NUMBER,
@@ -19,11 +19,11 @@ TEST(GivenATrueCondition, ItShouldJumpToFirstInstruction) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().numberValue, 1);
+    EXPECT_EQ(virtualMachine.getStack()->top().content.numberValue, 1);
 }
 
 TEST(GivenAFalseCondition, ItShouldJumpToSecondInstruction) {
-    const std::vector<Bytecode> program = {
+    const std::vector<uint8_t> program = {
             LOAD_NUMBER, 1,
             LOAD_NUMBER, 3,
             EQUAL_NUMBER,
@@ -40,5 +40,5 @@ TEST(GivenAFalseCondition, ItShouldJumpToSecondInstruction) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().numberValue, 2);
+    EXPECT_EQ(virtualMachine.getStack()->top().content.numberValue, 2);
 }

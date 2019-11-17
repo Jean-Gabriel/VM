@@ -34,20 +34,27 @@ Executor::Executor() {
     this->executables[STORE_LOCAL] = Executor::storeLocal;
     this->executables[LOAD_LOCAL] = Executor::loadLocal;
 
-    this->executables[DECLARE_GLOBAL_FUNCTION] = Executor::declareGlobalFunction;
-    this->executables[CALL_GLOBAL_FUNCTION] = Executor::callGlobalFunction;
+    this->executables[DECLARE_FUNCTION] = Executor::declareFunction;
+    this->executables[CALL_FUNCTION] = Executor::callFunction;
     this->executables[RETURN] = Executor::doReturn;
+
+    this->executables[DECLARE_OBJECT] = Executor::declareObject;
+    this->executables[DECLARE_OBJECT_ATTRIBUTE] = Executor::declareObjectAttribute;
+    this->executables[DELETE_OBJECT] = Executor::deleteObject;
+    this->executables[STORE_ATTRIBUTE] = Executor::storeAttribute;
+    this->executables[LOAD_ATTRIBUTE] = Executor::loadAttribute;
+    this->executables[LOAD_OBJECT] = Executor::loadObject;
 
     this->executables[HALT] = Executor::halt;
 }
 
 
-void Executor::execute(VirtualMachine *vm, const Bytecode *operation) const {
+void Executor::execute(VirtualMachine *vm, const uint8_t *operation) const {
     this->executables.at(*operation)(vm);
 }
 
 void Executor::jump(VirtualMachine* vm) {
-    InstructionPointer jumpInstructionPointer = vm->advanceInstruction();
+    uint16_t jumpInstructionPointer = vm->advanceInstruction();
 
     vm->setInstructionPointerTo(jumpInstructionPointer);
 }

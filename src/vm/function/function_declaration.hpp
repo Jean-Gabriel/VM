@@ -4,13 +4,11 @@
 #include <stdint-gcc.h>
 #include "../state.hpp"
 
-typedef uint8_t DeclarableID;
-
 struct FunctionDeclaration {
     uint8_t argumentCount;
-    InstructionPointer startingPoint;
+    int startingPoint;
 };
 
-FunctionDeclaration buildFunctionDeclarationWith(InstructionPointer, uint8_t);
+FunctionDeclaration buildFunctionDeclarationWith(int, uint8_t);
 
 #endif //VIRTUAL_MACHINE_FUNCTION_DECLARATION_HPP

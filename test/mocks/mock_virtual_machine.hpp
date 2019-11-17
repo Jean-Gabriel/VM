@@ -12,9 +12,13 @@ public:
         return this->memory;
     }
 
-    explicit MockVirtualMachine(const std::vector<Bytecode>& program) : VirtualMachine(program) {}
+    std::map<uint8_t, ObjectDeclaration> getDeclaredObject() {
+        return this->declaredObjects;
+    }
 
-    static MockVirtualMachine initializeWith(const std::vector<Bytecode> &program) {
+    explicit MockVirtualMachine(const std::vector<uint8_t>& program) : VirtualMachine(program) {}
+
+    static MockVirtualMachine initializeWith(const std::vector<uint8_t> &program) {
         return MockVirtualMachine(program);
     }
 };

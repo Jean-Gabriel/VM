@@ -3,15 +3,15 @@
 #include <utility>
 #include <iostream>
 
-VirtualMachine VirtualMachine::initializeWith(const std::vector<Bytecode> &program) {
+VirtualMachine VirtualMachine::initializeWith(const std::vector<uint8_t> &program) {
         return VirtualMachine(program);
 }
 
-VirtualMachine::VirtualMachine(std::vector<Bytecode> program): program(std::move(program)), memory(Memory::createWithSize(1000)) {
+VirtualMachine::VirtualMachine(std::vector<uint8_t> program): program(std::move(program)), memory(Memory::createWithSize(1000)) {
     this->state.instructionPointer = 0;
 }
 
-Bytecode VirtualMachine::advanceInstruction() {
+uint8_t VirtualMachine::advanceInstruction() {
     return this->program[this->state.instructionPointer++];
 }
 
@@ -30,8 +30,8 @@ void VirtualMachine::run() {
     }
 }
 
-void VirtualMachine::stop(ReturnCode code) {
-    std::cout << "Machine exited with code " << code << std::endl;
+void VirtualMachine::stop(uint8_t returnCode) {
+    std::cout << "Machine exited with code " << std::to_string(returnCode) << std::endl;
     this->state.isRunning = false;
 }
 
@@ -39,6 +39,6 @@ bool VirtualMachine::instructionPointerIsOutOfBound() {
     return this->state.instructionPointer >= program.size();
 }
 
-void VirtualMachine::setInstructionPointerTo(InstructionPointer pointer) {
+void VirtualMachine::setInstructionPointerTo(int pointer) {
     this->state.instructionPointer = pointer;
 }

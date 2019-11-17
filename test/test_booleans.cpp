@@ -2,7 +2,7 @@
 #include "mocks/mock_virtual_machine.hpp"
 
 TEST(GivenTwoBoolean, TheyShouldBeEqual) {
-    const std::vector<Bytecode> program = {
+    const std::vector<uint8_t> program = {
             LOAD_BOOLEAN, 1,
             LOAD_BOOLEAN, 1,
             EQUAL_BOOLEAN,
@@ -11,11 +11,11 @@ TEST(GivenTwoBoolean, TheyShouldBeEqual) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().booleanValue, true);
+    EXPECT_EQ(virtualMachine.getStack()->top().content.booleanValue, true);
 }
 
 TEST(GivenTwoBoolean, TheyShouldNotBeEqual) {
-    const std::vector<Bytecode> program = {
+    const std::vector<uint8_t> program = {
             LOAD_BOOLEAN, 0,
             LOAD_BOOLEAN, 1,
             EQUAL_BOOLEAN,
@@ -24,5 +24,5 @@ TEST(GivenTwoBoolean, TheyShouldNotBeEqual) {
 
     virtualMachine.run();
 
-    EXPECT_EQ(virtualMachine.getStack()->top().booleanValue, false);
+    EXPECT_EQ(virtualMachine.getStack()->top().content.booleanValue, false);
 }

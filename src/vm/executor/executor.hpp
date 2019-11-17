@@ -8,11 +8,10 @@
 
 struct FunctionDeclaration;
 class VirtualMachine;
-typedef uint8_t Bytecode;
 
 class Executor {
 private:
-    std::map<Bytecode,void (*)(VirtualMachine*)> executables;
+    std::map<uint8_t,void (*)(VirtualMachine*)> executables;
 
     static void halt(VirtualMachine*);
 
@@ -48,13 +47,20 @@ private:
     static void storeLocal(VirtualMachine*);
     static void loadLocal(VirtualMachine*);
 
-    static void declareGlobalFunction(VirtualMachine*);
-    static void callGlobalFunction(VirtualMachine*);
+    static void declareFunction(VirtualMachine*);
+    static void callFunction(VirtualMachine*);
     static void loadArgumentsFor(FunctionDeclaration, VirtualMachine*);
     static void doReturn(VirtualMachine*);
+
+    static void declareObject(VirtualMachine*);
+    static void declareObjectAttribute(VirtualMachine*);
+    static void deleteObject(VirtualMachine*);
+    static void storeAttribute(VirtualMachine*);
+    static void loadAttribute(VirtualMachine*);
+    static void loadObject(VirtualMachine*);
 public:
     explicit Executor();
-    void execute(VirtualMachine*, const Bytecode* operation) const;
+    void execute(VirtualMachine*, const uint8_t *operation) const;
 };
 
 #endif //VIRTUAL_MACHINE_EXECUTOR_HPP

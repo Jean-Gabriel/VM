@@ -2,9 +2,9 @@
 #include "virtual_machine.hpp"
 
 void Executor::jumpIfTrue(VirtualMachine *vm) {
-    InstructionPointer jumpInstructionPointer = vm->advanceInstruction();
-    InstructionPointer elseJumpInstructionPointer = vm->advanceInstruction();
-    Value topOfStack = vm->stack.top();
+    int jumpInstructionPointer = vm->advanceInstruction();
+    int elseJumpInstructionPointer = vm->advanceInstruction();
+    Value::Content topOfStack = vm->stack.top().content;
     vm->stack.pop();
 
     if(topOfStack.booleanValue) {
@@ -15,9 +15,9 @@ void Executor::jumpIfTrue(VirtualMachine *vm) {
 }
 
 void Executor::jumpIfFalse(VirtualMachine *vm) {
-    InstructionPointer jumpInstructionPointer = vm->advanceInstruction();
-    InstructionPointer elseJumpInstructionPointer = vm->advanceInstruction();
-    Value topOfStack = vm->stack.top();
+    int  jumpInstructionPointer = vm->advanceInstruction();
+    int  elseJumpInstructionPointer = vm->advanceInstruction();
+    Value::Content topOfStack = vm->stack.top().content;
     vm->stack.pop();
 
     if(!topOfStack.booleanValue) {
