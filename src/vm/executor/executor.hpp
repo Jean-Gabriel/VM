@@ -51,6 +51,13 @@ private:
     static void callFunction(VirtualMachine*);
     static void loadArgumentsFor(FunctionDeclaration, VirtualMachine*);
     static void doReturn(VirtualMachine*);
+
+    static void declareObject(VirtualMachine*);
+    static void declareObjectAttribute(VirtualMachine*);
+    static void deleteObject(VirtualMachine*);
+    static void storeAttribute(VirtualMachine*);
+    static void loadAttribute(VirtualMachine*);
+    static void loadObject(VirtualMachine*);
 public:
     explicit Executor();
     void execute(VirtualMachine*, const uint8_t *operation) const;

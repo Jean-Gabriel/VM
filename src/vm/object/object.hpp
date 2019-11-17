@@ -1,7 +1,7 @@
 #ifndef VIRTUAL_MACHINE_OBJECT_HPP
 #define VIRTUAL_MACHINE_OBJECT_HPP
 
-#include "memory.hpp"
+#include "../memory/memory.hpp"
 
 struct Object {
     uint16_t startingPoint;

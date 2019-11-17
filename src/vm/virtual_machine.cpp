@@ -31,7 +31,7 @@ void VirtualMachine::run() {
 }
 
 void VirtualMachine::stop(uint8_t returnCode) {
-    std::cout << "Machine exited with returnCode " << returnCode << std::endl;
+    std::cout << "Machine exited with code " << std::to_string(returnCode) << std::endl;
     this->state.isRunning = false;
 }
 

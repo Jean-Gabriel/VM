@@ -45,3 +45,13 @@ TEST(GivenANumberValue, ItShouldGiveBytesOfGivenNumber) {
     ASSERT_EQ(bytes.size(), 4);
     ASSERT_EQ(valueFrom(bytes, NUMBER).content.numberValue, 152);
 }
+
+TEST(GivenAValue, ItShouldGiveItsSize) {
+    Value number = numberValueFrom(12);
+    Value boolean = booleanValueFrom(true);
+    Value object = objectValueFrom(10, 2);
+
+    ASSERT_EQ(sizeOf((ValueType)number.type), 4);
+    ASSERT_EQ(sizeOf((ValueType)boolean.type), 1);
+    ASSERT_EQ(sizeOf((ValueType)object.type), 2);
+}

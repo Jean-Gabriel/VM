@@ -25,14 +25,16 @@ Value objectValueFrom(uint16_t statingPoint, uint8_t length) {
     return objectValue;
 }
 
-std::vector<uint8_t> bytesFrom(Value value) {
-    switch(value.type) {
-        case BOOLEAN: {
-            return { value.content.booleanValue };
-        }
+std::vector<uint16_t> initialBytesOf(ValueType type) {
+    switch(type) {
         case NUMBER: {
-            NumberValue numberValue = { .number = value.content.numberValue };
-            return { numberValue.bytes[0], numberValue.bytes[1], numberValue.bytes[2], numberValue.bytes[3] };
+            return { 0 };
+        }
+        case BOOLEAN: {
+            return { 0 };
+        }
+        case OBJECT: {
+            return { 0, 0 };
         }
         default: {
             break;
@@ -42,7 +44,26 @@ std::vector<uint8_t> bytesFrom(Value value) {
     return {};
 }
 
-Value valueFrom(std::vector<uint8_t> bytes, ValueType type) {
+std::vector<uint16_t> bytesFrom(Value value) {
+    switch(value.type) {
+        case BOOLEAN: {
+            return { value.content.booleanValue };
+        }
+        case NUMBER: {
+            NumberValue numberValue = { .number = value.content.numberValue };
+            return { numberValue.bytes[0], numberValue.bytes[1], numberValue.bytes[2], numberValue.bytes[3] };
+        } case OBJECT: {
+            return { value.content.objectValue.startingPoint, value.content.objectValue.length };
+        }
+        default: {
+            break;
+        }
+    }
+
+    return {};
+}
+
+Value valueFrom(std::vector<uint16_t> bytes, ValueType type) {
     switch(type) {
         case BOOLEAN: {
             return booleanValueFrom(bytes.front());
@@ -51,9 +72,29 @@ Value valueFrom(std::vector<uint8_t> bytes, ValueType type) {
             NumberValue numberValue { .bytes = { bytes[0], bytes[1], bytes[2], bytes[3] } };
             return numberValueFrom(numberValue.number);
         }
+        case OBJECT: {
+            return objectValueFrom(bytes[0], bytes[1]);
+        }
         default:
             break;
     }
 
     return { .type = NIL };
+}
+
+uint16_t sizeOf(ValueType type) {
+    switch(type) {
+        case BOOLEAN: {
+            return 1;
+        }
+        case NUMBER: {
+            return 4;
+        }
+        case OBJECT: {
+            return 2;
+        }
+        default: {
+            return 0;
+        }
+    }
 }

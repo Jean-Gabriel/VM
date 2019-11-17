@@ -7,10 +7,10 @@
 #include "function/function.hpp"
 #include "function/function_declaration.hpp"
 #include "memory/memory.hpp"
+#include "object/object_declaration.hpp"
 #include <string>
 #include <stack>
 #include <vector>
-#include <unordered_map>
 
 class VirtualMachine {
 protected:
@@ -21,8 +21,10 @@ protected:
     Executor executor;
     Memory memory;
 
-    std::unordered_map<uint8_t, FunctionDeclaration> declaredFunctions;
-    std::unordered_map<uint8_t, Value> globals;
+    std::map<uint8_t, FunctionDeclaration> declaredFunctions;
+    std::map<uint8_t, ObjectDeclaration> declaredObjects;
+    std::map<uint8_t, Value> globals;
+
     std::stack<Value> stack;
     std::stack<Function> callStack;
 

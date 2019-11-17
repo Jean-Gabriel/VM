@@ -12,6 +12,10 @@ public:
         return this->memory;
     }
 
+    std::map<uint8_t, ObjectDeclaration> getDeclaredObject() {
+        return this->declaredObjects;
+    }
+
     explicit MockVirtualMachine(const std::vector<uint8_t>& program) : VirtualMachine(program) {}
 
     static MockVirtualMachine initializeWith(const std::vector<uint8_t> &program) {

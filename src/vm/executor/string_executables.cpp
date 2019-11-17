@@ -3,7 +3,7 @@
 #include "virtual_machine.hpp"
 
 void Executor::loadString(VirtualMachine *vm) {
-    std::vector<uint8_t> stringValues;
+    std::vector<uint16_t> stringValues;
     uint8_t byte = vm->advanceInstruction();
 
     while (byte != 0) {
@@ -28,7 +28,7 @@ void Executor::appendString(VirtualMachine *vm) {
     vm->memory.freeAt(firstValue.objectValue.startingPoint, firstValue.objectValue.length);
     vm->memory.freeAt(secondValue.objectValue.startingPoint, secondValue.objectValue.length);
 
-    uint16_t resultStartingPoint = vm->memory.allocate(std::vector<uint8_t>(result.begin(),result.end()));
+    uint16_t resultStartingPoint = vm->memory.allocate(std::vector<uint16_t>(result.begin(),result.end()));
     vm->stack.push(objectValueFrom(resultStartingPoint, result.size()));
 }
 
@@ -42,7 +42,7 @@ void Executor::substringAt(VirtualMachine *vm) {
 
     vm->memory.freeAt(value.objectValue.startingPoint, value.objectValue.length);
 
-    int substringStartingPointer = vm->memory.allocate(std::vector<uint8_t>(substring.begin(), substring.end()));
+    int substringStartingPointer = vm->memory.allocate(std::vector<uint16_t>(substring.begin(), substring.end()));
     vm->stack.push(objectValueFrom(substringStartingPointer, substring.size()));
 }
 
@@ -57,7 +57,7 @@ void Executor::substringWithLength(VirtualMachine *vm) {
 
     vm->memory.freeAt(value.objectValue.startingPoint, value.objectValue.length);
 
-    uint16_t substringStartingPointer = vm->memory.allocate(std::vector<uint8_t>(substring.begin(), substring.end()));
+    uint16_t substringStartingPointer = vm->memory.allocate(std::vector<uint16_t>(substring.begin(), substring.end()));
     vm->stack.push(objectValueFrom(substringStartingPointer, substring.size()));
 }
 

@@ -1,5 +1,5 @@
 #include <iostream>
-#include <memory/object.hpp>
+#include <object/object.hpp>
 #include "memory.hpp"
 
 Memory Memory::createWithSize(uint16_t bytes) {
@@ -7,14 +7,15 @@ Memory Memory::createWithSize(uint16_t bytes) {
 }
 
 Memory::Memory(uint16_t size) {
-    this->block.resize(size);
+    this->resize(size);
+    this->allocate({0}); // Use first byte of memory for null value
 }
 
 void Memory::resize(uint16_t toSize){
     this->block.resize(toSize);
 }
 
-uint16_t Memory::allocate(std::vector<uint8_t> bytes) {
+uint16_t Memory::allocate(std::vector<uint16_t> bytes) {
     uint16_t sizeOfAllocation = bytes.size();
     uint16_t numberOfFreeBytesInARow = 0;
     uint16_t memoryIndex = 0;
@@ -64,4 +65,20 @@ std::string Memory::stringFrom(Object memoryInformation) {
     }
 
     return assembledString;
+}
+
+std::vector<uint16_t> Memory::readAt(uint16_t startingPoint, uint16_t length) {
+    std::vector<uint16_t> readMemory{};
+    for(int i = startingPoint; i < startingPoint+length; i++) {
+        readMemory.push_back(this->block[i].read());
+    }
+
+    return readMemory;
+}
+
+void Memory::updateAt(uint16_t offset, std::vector<uint16_t> bytesToStore) {
+    for(int i = offset + bytesToStore.size() - 1;i >= offset; i--) {
+        this->block[i].write(bytesToStore.back());
+        bytesToStore.pop_back();
+    }
 }

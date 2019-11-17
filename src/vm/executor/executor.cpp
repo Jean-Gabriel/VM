@@ -38,6 +38,13 @@ Executor::Executor() {
     this->executables[CALL_FUNCTION] = Executor::callFunction;
     this->executables[RETURN] = Executor::doReturn;
 
+    this->executables[DECLARE_OBJECT] = Executor::declareObject;
+    this->executables[DECLARE_OBJECT_ATTRIBUTE] = Executor::declareObjectAttribute;
+    this->executables[DELETE_OBJECT] = Executor::deleteObject;
+    this->executables[STORE_ATTRIBUTE] = Executor::storeAttribute;
+    this->executables[LOAD_ATTRIBUTE] = Executor::loadAttribute;
+    this->executables[LOAD_OBJECT] = Executor::loadObject;
+
     this->executables[HALT] = Executor::halt;
 }
 
