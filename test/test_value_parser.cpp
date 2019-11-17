@@ -55,3 +55,9 @@ TEST(GivenAValue, ItShouldGiveItsSize) {
     ASSERT_EQ(sizeOf((ValueType)boolean.type), 1);
     ASSERT_EQ(sizeOf((ValueType)object.type), 2);
 }
+
+TEST(GivenAValue, ItShouldGiveItsInitialBytes) {
+    ASSERT_EQ(initialBytesOf(NUMBER).size(), 4);
+    ASSERT_EQ(initialBytesOf(BOOLEAN).size(), 1);
+    ASSERT_EQ(initialBytesOf(OBJECT).size(), 2);
+}

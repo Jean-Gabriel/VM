@@ -153,7 +153,7 @@ TEST(GivenAnObjectWithStringAttribute, ItShouldLoadAttributeOnTheStack) {
             STORE_GLOBAL, 0,
 
             LOAD_GLOBAL, 0,
-            LOAD_STRING, 'H', 'e', 'l', 'l', 'o', '\0',
+            LOAD_STRING, 'H', 'e', 'l', 'l', 'o', ' ', 'y', 'o', 'u', '\0',
             STORE_ATTRIBUTE, 0,
 
             LOAD_STRING, 'H', 'I', '\0',
@@ -168,7 +168,7 @@ TEST(GivenAnObjectWithStringAttribute, ItShouldLoadAttributeOnTheStack) {
     virtualMachine.run();
     std::string loadedString = virtualMachine.getMemory().stringFrom(virtualMachine.getStack()->top().content.objectValue);
 
-    EXPECT_EQ(loadedString, "Hello");
+    EXPECT_EQ(loadedString, "Hello you");
 }
 
 TEST(GivenAnObjectWithMultipleAttribute, ItShouldCorrectlyUpdateAttributes) {

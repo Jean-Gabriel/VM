@@ -28,7 +28,7 @@ Value objectValueFrom(uint16_t statingPoint, uint8_t length) {
 std::vector<uint16_t> initialBytesOf(ValueType type) {
     switch(type) {
         case NUMBER: {
-            return { 0 };
+            return { 0, 0, 0, 0 };
         }
         case BOOLEAN: {
             return { 0 };

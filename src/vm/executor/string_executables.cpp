@@ -63,7 +63,7 @@ void Executor::substringWithLength(VirtualMachine *vm) {
 
 void Executor::printString(VirtualMachine *vm) {
     Value::Content value = vm->stack.top().content;
-    vm->stack.top();
+    vm->stack.pop();
 
     std::string assembledStringToPrint = vm->memory.stringFrom(value.objectValue);
 
