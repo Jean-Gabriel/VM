@@ -14,7 +14,7 @@ A virtual machine that can read and execute instructions from given bytecode.
 
 ## Bytecode example
 
-Given this example in Typescript 
+Given this code in TypeScript 
 ```typescript
 interface Person {
     fullName: string;
