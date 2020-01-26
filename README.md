@@ -1,6 +1,6 @@
-## Virtual Machine
+## Juice Virtual Machine
 
-[![Build Status](https://travis-ci.org/Jean-Gabriel/VirtualMachine.svg?branch=master)](https://travis-ci.org/Jean-Gabriel/VirtualMachine)
+[![Build Status](https://travis-ci.org/Jean-Gabriel/JuiceVM.svg?branch=master)](https://travis-ci.org/Jean-Gabriel/JuiceVM)
 
 A virtual machine that can read and execute instructions from given bytecode.
 
